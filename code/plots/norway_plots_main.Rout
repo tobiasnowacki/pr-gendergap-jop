@@ -1,0 +1,136 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
+✔ ggplot2 3.3.5     ✔ purrr   0.3.4
+✔ tibble  3.1.6     ✔ dplyr   1.0.8
+✔ tidyr   1.2.0     ✔ stringr 1.4.0
+✔ readr   2.0.2     ✔ forcats 0.5.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+> library(rio)
+> library(rdrobust)
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is 24d50dc41518460caa7dd1e4f46697f9eb053e29
+Registering fonts with R
+Loading required package: viridisLite
+> source("code/utils/het_by_sex_plot.R")
+> 
+> # Load data
+> rd_dat <- read.csv("data/no_rd.csv") %>%
++     filter(
++         abs(winmargin_loc) < 0.05, winmargin_loc != 0,
++         year < 2019,
++         pop_loc < 250000,
++         kname_loc != "Oslo"
++     ) %>%
++     filter(inconsistency_candidate_loc == 0) %>%
++     filter(party_loc %in% c("a", "frp", "h", "krf", "sp", "sv", "v"))
+> 
+> # Plotting running again on rd
+> out_run <- het_by_sex_plot(rd_dat, "run_again")
+> 
+> ggplot(out_run[[1]], aes(rdplot_mean_x, rdplot_mean_y)) +
++     geom_point(aes(colour = sex), alpha = 0.3) +
++     geom_line(
++         data = out_run[[2]],
++         aes(rdplot_x, rdplot_y,
++             colour = sex,
++             group = interaction(below, sex)
++         ), lwd = 1.3
++     ) +
++     geom_vline(xintercept = 0, lty = "dashed", colour = "grey50") +
++     theme_tn() +
++     labs(
++         x = "Minimal Distance to Winning Threshold",
++         y = "Pr(Running in t+1)",
++         colour = "Sex"
++     ) +
++     scale_x_continuous(expand = c(0, 0)) +
++     scale_y_continuous(expand = expansion(mult = c(0, 0))) +
++     scale_colour_manual(values = c("red", "dark blue")) +
++     ylim(0.25, 0.75) +
++     theme(
++         axis.line = element_line(colour = "grey40"),
++         panel.grid.major = element_line(colour = "grey90"),
++         panel.grid.minor = element_blank(),
++         panel.border = element_blank(),
++         panel.background = element_blank()
++     )
+Scale for 'y' is already present. Adding another scale for 'y', which will
+replace the existing scale.
+There were 50 or more warnings (use warnings() to see the first 50)
+> ggsave("output/figures/norway_run_again.pdf", device = cairo_pdf, width = 4, height = 2.5)
+Warning message:
+Removed 21 rows containing missing values (geom_point). 
+> 
+> # plotting winning again on rd
+> out_win <- het_by_sex_plot(rd_dat, "win_again")
+> 
+> ggplot(out_win[[1]], aes(rdplot_mean_x, rdplot_mean_y)) +
++     geom_point(aes(colour = sex), alpha = 0.3) +
++     geom_line(
++         data = out_win[[2]],
++         aes(rdplot_x, rdplot_y,
++             colour = sex,
++             group = interaction(below, sex)
++         ), lwd = 1.3
++     ) +
++     geom_vline(xintercept = 0, lty = "dashed", colour = "grey50") +
++     theme_tn() +
++     labs(
++         x = "Minimal Distance to Winning Threshold",
++         y = "Pr(Winning in t+1)",
++         colour = "Sex"
++     ) +
++     scale_colour_manual(values = c("red", "dark blue")) +
++     scale_x_continuous(expand = c(0, 0)) +
++     scale_y_continuous(expand = expansion(mult = c(0, 0))) +
++     ylim(0.1, 0.5) +
++     theme(
++         axis.line = element_line(colour = "grey40"),
++         panel.grid.major = element_line(colour = "grey90"),
++         panel.grid.minor = element_blank(),
++         panel.border = element_blank(),
++         panel.background = element_blank()
++     )
+Scale for 'y' is already present. Adding another scale for 'y', which will
+replace the existing scale.
+There were 50 or more warnings (use warnings() to see the first 50)
+> ggsave("output/figures/norway_win_again.pdf", device = cairo_pdf, width = 4, height = 2.5)
+Warning message:
+Removed 19 rows containing missing values (geom_point). 
+> 
+> proc.time()
+   user  system elapsed 
+  5.122   0.404   5.718 

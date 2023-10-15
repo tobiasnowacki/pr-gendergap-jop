@@ -1,0 +1,198 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(modelsummary)
+> library(lfe)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+> source("code/utils/run_het_rd.R")
+> options(modelsummary_format_numeric_latex = "plain")
+> 
+> # Define which parties belong to which group
+> left = c("a", "sv")
+> right = c("h", "frp", "krf", "v")
+> 
+> # Load data
+> rd_dat = read.csv("data/no_rd.csv") %>%
++   filter(abs(winmargin_loc) < 0.5,
++     winmargin_loc != 0,
++     year < 2019,
++     pop_loc < 250000,
++     kname_loc != "Oslo") %>%
++   filter(inconsistency_candidate_loc == 0, party_loc %in% c(left, right))
+> 
+> # Subset to municipalities that record full personal votes
+> rd_dat_votes <- rd_dat %>%
++   filter(missing_votes_municipality_loc == 0) %>%
++   mutate(pv_log = log(pv_again + 1))
+> 
+> # I'm measuring these unconditionally
+> rd_dat$rank_advanced[is.na(rd_dat$rank_advanced)] = 0
+> rd_dat$rank_postadvanced[is.na(rd_dat$rank_postadvanced)] = 0
+> 
+> # Set estimation formula
+> form_used = "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(cnr_loc)  + as.factor(year) + as.factor(party_loc) + as.factor(party_loc):as.factor(year) | 0 | knr_loc"
+> 
+> # Original rank advances
+> run_left = run_het_rd(rd_dat %>% filter(party_loc %in% left),
++            "rank_advanced",
++            "winmargin_loc",
++            form_used,
++            bw_fac = c(1))
+0.06753163> run_right = run_het_rd(rd_dat %>% filter(party_loc %in% right),
++            "rank_advanced",
++            "winmargin_loc",
++            form_used,
++            bw_fac = c(1))
+0.09199868> 
+> # Actual rank advances
+> win_left = run_het_rd(rd_dat %>% filter(party_loc %in% left),
++            "rank_postadvanced",
++            "winmargin_loc",
++            form_used,
++            bw_fac = c(1))
+0.06134667> win_right = run_het_rd(rd_dat %>% filter(party_loc %in% right),
++            "rank_postadvanced",
++            "winmargin_loc",
++            form_used,
++            bw_fac = c(1))
+0.09715167> 
+> # Preadvantage in t+1
+> rank_left = run_het_rd(rd_dat %>% filter(party_loc %in% left),
++            "pread_again",
++            "winmargin_loc",
++            form_used,
++            bw_fac = c(1))
+0.03303537> rank_right = run_het_rd(rd_dat %>% filter(party_loc %in% right),
++            "pread_again",
++            "winmargin_loc",
++            form_used,
++            bw_fac = c(1))
+0.05522366> 
+> # Personal Vote in t+1
+> pv_left = run_het_rd(rd_dat_votes %>% filter(party_loc %in% left),
++            "pv_share",
++            "winmargin_loc",
++            form_used,
++            bw_fac = c(1))
+0.02498517> pv_right = run_het_rd(rd_dat_votes %>% filter(party_loc %in% right),
++            "pv_share",
++            "winmargin_loc",
++            form_used,
++            bw_fac = c(1))
+0.05238424> 
+> # Wrangle results into table for export
+> results = list(run_left, run_right, win_left, win_right, rank_left, rank_right, pv_left, pv_right) %>% flatten
+> 
+> results_tidy = map(results, ~ .x$out)
+> n_left = map_dbl(results, ~ .x$n_left)
+> n_right = map_dbl(results, ~ .x$n_right)
+> n_mean = map_dbl(results, ~.x$out_mean) %>% signif(3)
+> bwv = map_dbl(results, ~.x$bw) %>% signif(2)
+> 
+> # Wrap multicolumn around header (to make it centred with decimal alignment)
+> apply_mc = function(x){
++   return(c(paste0("\\multicolumn{1}{c}{", x, "}")))
++ }
+> names(results_tidy) = paste0("(", 1:length(results_tidy), ")") %>% apply_mc
+> 
+> row_mat = matrix(ncol = length(n_left) + 1, byrow = TRUE,
++                  c("Parties", apply_mc(rep(c("Left", "Right"), times = 4)),
++                  "Bandwidth", bwv,
++                  "Outcome Mean", n_mean,
++                  "N (left)", apply_mc(n_left),
++                  "N (right)", apply_mc(n_right))) %>%
++           as.data.frame
+> 
+> clist = c("treatTRUE" = "Elected",
++           "female" = "Female",
++           "treatTRUE:female" = "Elected x Female")
+> 
+> # Export table
+> tex_out = modelsummary(results_tidy,
++              coef_map = clist,
++              gof_omit = ".*",
++              caption = "\\label{tab:norway_by_party_mech} \\textbf{Mechanisms leading to lower incumbency advantage: Difference-in-Discontinuity Estimates On Additional Outcomes, Norway.}",
++              booktabs = TRUE,
++              add_rows = row_mat,
++              output = "latex") %>%
++   kable_styling(
++     font_size = 9,
++     latex_options = "hold_position"
++   ) %>%
++   footnote(
++       threeparttable = TRUE,
++       fixed_small_size = FALSE,
++       footnote_as_chunk = TRUE,
++       general_title = "",
++       general = c("All estimates are reported with robust standard errors clustered at the municipality level in parentheses. Each observation is a candidate's election attempt. Other coefficients reported in Table I4.")) %>%
++   add_header_above(c(" " = 1, "Orig. Rank Advance" = 2, "Actual Rank Advance" = 2, "Pre-Ad. (t+1)" = 2, "Pers.V. Share (t+1)" = 2)) %>%
++   row_spec(c(2, 4), extra_latex_after = "\\addlinespace") %>%
++   row_spec(6, extra_latex_after = "\\addlinespace \\midrule \\addlinespace") %>%
++   column_spec(2:9, latex_column_spec = "S[
++               input-symbols=(),
++               table-format=-2.3,
++               table-space-text-pre    = (,
++               table-space-text-post   = ),
++               input-open-uncertainty  =,
++               input-close-uncertainty = ,
++               table-align-text-post = false]") %>%
++   gsub(pattern = "\\textbackslash{}", replacement= "\\", fixed = TRUE) %>%
++   gsub(pattern = "\\{", replacement= "{", fixed = TRUE) %>%
++   gsub(pattern = "\\}", replacement= "}", fixed = TRUE)
+> 
+>   cat(tex_out, file = "output/tables/norway_by_party_mech.tex")
+> 
+> proc.time()
+   user  system elapsed 
+ 10.648   0.691  12.241 

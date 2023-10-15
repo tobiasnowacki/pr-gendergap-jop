@@ -1,0 +1,138 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+> source("code/utils/het_by_sex_plot.R")
+> 
+> # Load data in
+> rd_dat <- read.csv("data/spain_rd_ready.csv",
++     row.names = NULL
++ ) %>%
++     filter(year < 2019) %>%
++     filter(pop < 250000) %>%
++     filter(abs(winmargin_loc) < 0.05) %>%
++     filter(major_party == TRUE) %>%
++     filter(year != 2019) %>%
++     filter(winmargin_loc != 0)
+> 
+> # Plotting running again on rd
+> out_run <- het_by_sex_plot(rd_dat %>% filter(major_party == TRUE), "run_again")
+> 
+> ggplot(out_run[[1]], aes(rdplot_mean_x, rdplot_mean_y)) +
++     geom_point(aes(colour = sex), alpha = 0.3) +
++     geom_line(
++         data = out_run[[2]],
++         aes(rdplot_x, rdplot_y,
++             colour = sex,
++             group = interaction(below, sex)
++         ), lwd = 1.3
++     ) +
++     geom_vline(xintercept = 0, lty = "dashed", colour = "grey50") +
++     theme_tn() +
++     labs(
++         x = "Minimal Distance to Winning Threshold",
++         y = "Pr(Running in t+1)",
++         colour = "Sex"
++     ) +
++     scale_x_continuous(expand = c(0, 0)) +
++     scale_y_continuous(expand = expansion(mult = c(0, 0))) +
++     scale_colour_manual(values = c("red", "dark blue")) +
++     theme(
++         axis.line = element_line(colour = "grey40"),
++         panel.grid.major = element_line(colour = "grey90"),
++         panel.grid.minor = element_blank(),
++         panel.border = element_blank(),
++         panel.background = element_blank()
++     )
+There were 50 or more warnings (use warnings() to see the first 50)
+> ggsave("output/figures/spain_run_again.pdf",
++     device = cairo_pdf,
++     width = 4,
++     height = 2.5
++ )
+> 
+> # Plotting winning again on rd
+> out_win <- het_by_sex_plot(rd_dat %>% filter(major_party == TRUE), "win_again")
+> 
+> ggplot(out_win[[1]], aes(rdplot_mean_x, rdplot_mean_y)) +
++     geom_point(aes(colour = sex), alpha = 0.3) +
++     # geom_smooth(aes(group = interaction(rdplot_mean_x < 0, sex),
++     #                 colour = sex)) +
++     geom_line(
++         data = out_win[[2]],
++         aes(rdplot_x, rdplot_y,
++             colour = sex,
++             group = interaction(below, sex)
++         ), lwd = 1.3
++     ) +
++     geom_vline(xintercept = 0, lty = "dashed", colour = "grey50") +
++     theme_tn() +
++     labs(
++         x = "Minimal Distance to Winning Threshold",
++         y = "Pr(Winning in t+1)",
++         colour = "Sex"
++     ) +
++     scale_colour_manual(values = c("red", "dark blue")) +
++     scale_x_continuous(expand = c(0, 0)) +
++     scale_y_continuous(expand = expansion(mult = c(0, 0))) +
++     theme(
++         axis.line = element_line(colour = "grey40"),
++         panel.grid.major = element_line(colour = "grey90"),
++         panel.grid.minor = element_blank(),
++         panel.border = element_blank(),
++         panel.background = element_blank()
++     )
+There were 50 or more warnings (use warnings() to see the first 50)
+> ggsave("output/figures/spain_win_again.pdf",
++     device = cairo_pdf,
++     width = 4,
++     height = 2.5
++ )
+> 
+> proc.time()
+   user  system elapsed 
+  8.245   0.644   9.878 

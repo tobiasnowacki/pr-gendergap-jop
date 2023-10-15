@@ -1,0 +1,116 @@
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage[UKenglish]{babel}% http://ctan.org/pkg/babel
+\usepackage[UKenglish]{isodate}% http://ctan.org/pkg/isodate
+\usepackage{amsmath, amsthm, amsfonts, amssymb}
+\usepackage{mathrsfs}           % \mathscr font.
+\usepackage{setspace}
+\usepackage[colorlinks=true,
+    linkcolor=red,
+    citecolor=red,
+    urlcolor=red,
+    breaklinks]{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{xcolor}
+% \usepackage[style = authoryear, autocite=inline, doi=false,isbn=false,url=false]{biblatex}
+\usepackage{natbib}
+% \usepackage{libertine}
+
+% \usepackage[sf]{titlesec} % make section headings \sffamily
+
+% Header styling
+% make headers \sffamily
+% \newpagestyle{main}[\sffamily]{
+%     \sethead{\thepage}{}{\sectiontitle}
+%     }
+% \pagestyle{main}
+\usepackage{titling}
+% make titling elements \sffamily
+% \pretitle{\begin{center}\sf \LARGE}
+% \preauthor{\begin{center}
+%             \large \lineskip 0.5em%
+%             \begin{tabular}[t]{c}}
+% \predate{\begin{center}\large}
+\usepackage{abstract}
+% make abstract title \sffamily
+% \titleformat{\section}[block]{\Large \bf \sffamily}{\thesection}{1em}{}
+\usepackage{caption}
+\captionsetup{labelfont = bf}
+
+\usepackage{longtable}
+\usepackage{dcolumn}
+\usepackage[toc,page,header]{appendix}
+\usepackage{minitoc}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{flafter}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{color, colortbl}
+\definecolor{lgrey}{gray}{0.9}
+\usepackage{siunitx}
+\sisetup{
+    detect-all,
+    round-integer-to-decimal = true,
+    group-digits             = true,
+    group-minimum-digits     = 4,
+    group-separator          = {\,},
+    table-align-text-pre     = false,
+    table-align-text-post    = false,
+    input-signs              = + -,
+    input-symbols            = {*} {**} {***},
+    input-open-uncertainty   = ,
+    input-close-uncertainty  = ,
+    retain-explicit-plus,
+    parse-numbers = false
+}
+\newcolumntype{d}[1]{D..{#1}}
+
+
+\usepackage{etoolbox}
+
+\makeatletter
+
+% Patch case where name and year are separated by aysep
+% \patchcmd{\NAT@citex}
+%   {\@citea\NAT@hyper@{%
+%      \NAT@nmfmt{\NAT@nm}%
+%      \hyper@natlinkbreak{\NAT@aysep\NAT@spacechar}{\@citeb\@extra@b@citeb}%
+%      \NAT@date}}
+%   {\@citea\NAT@nmfmt{\NAT@nm}%
+%    \NAT@aysep\NAT@spacechar\NAT@hyper@{\NAT@date}}{}{}
+
+% % Patch case where name and year are separated by opening bracket
+% \patchcmd{\NAT@citex}
+%   {\@citea\NAT@hyper@{%
+%      \NAT@nmfmt{\NAT@nm}%
+%      \hyper@natlinkbreak{\NAT@spacechar\NAT@@open\if*#1*\else#1\NAT@spacechar\fi}%
+%        {\@citeb\@extra@b@citeb}%
+%      \NAT@date}}
+%   {\@citea\NAT@nmfmt{\NAT@nm}%
+%    \NAT@spacechar\NAT@@open\if*#1*\else#1\NAT@spacechar\fi\NAT@hyper@{\NAT@date}}
+%   {}{}
+
+\makeatother
+
+% Define symbols and maths shortcuts
+\DeclareRobustCommand{\bbone}{\text{\usefont{U}{bbold}{m}{n}1}}
+\DeclareMathOperator{\EX}{\mathbb{E}} % expected value
+\DeclareMathOperator{\V}{\mathbb{V}}
+\DeclareMathOperator{\Prob}{\mathbb{P}}
+\newcommand*{\trans}{^{\mathsf{T}}} %matrix transpose
+
