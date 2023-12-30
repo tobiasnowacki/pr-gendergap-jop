@@ -1,0 +1,101 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(broom)
+> library(viridis)
+Loading required package: viridisLite
+> library(scales)
+
+Attaching package: ‘scales’
+
+The following object is masked from ‘package:viridis’:
+
+    viridis_pal
+
+The following object is masked from ‘package:purrr’:
+
+    discard
+
+The following object is masked from ‘package:readr’:
+
+    col_factor
+
+> library(rddensity)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+> 
+> rd_dat = read.csv("data/spain_rd_ready.csv",
++                   row.names = NULL) %>%
++     filter(year < 2019) %>%
++     filter(pop < 250000) %>%
++     filter(abs(winmargin_loc) < 0.5) %>%
++     filter(major_party == TRUE) %>%
++     filter(winmargin_loc != 0)
+> 
+> dplot = rdplotdensity(rdd = rddensity(rd_dat$winmargin_loc),
++               X = rd_dat$winmargin_loc,
++               # CItype = "none",
++               plotN = c(20, 20),
++               plotRange = c(-0.05, 0.05),
++               histBreaks = seq(-0.05, 0.05, by = 0.0025),
++               type = "both")$Estplot +
++     geom_vline(xintercept = 0, lty = "dashed") +
++     theme_tn()
+Warning messages:
+1: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(density)` instead.
+ℹ The deprecated feature was likely used in the lpdensity package.
+  Please report the issue to the authors. 
+2: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead. 
+> 
+> ggsave(dplot,
++        file = "output/figures/spain_density.pdf",
++        width = 4,
++        height = 2.5,
++        device = cairo_pdf)
+> 
+> proc.time()
+   user  system elapsed 
+ 12.969   1.085  14.269 

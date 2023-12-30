@@ -9,6 +9,8 @@ library(broom)
 library(devtools)
 source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
 
+options(modelsummary_format_numeric_latex = "plain")
+
 source("code/utils/run_het_rd.R")
 
 # Parties to keep
@@ -86,7 +88,7 @@ clist <- c(
 tex_out <- modelsummary(results_tidy,
     coef_map = clist,
     gof_omit = ".*",
-    caption = "\\label{tab:poland_main} \\textbf{Difference-in-Discontinuity Estimates For Incumbency Advantage In Polish Counties and County-Like Cities.} The gender gap is similar in magnitude to that of Norwegian municipalities.",
+    caption = "\\label{tab:poland_main} \\textbf{Heterogeneity-in-DiscontinuityEstimates For Incumbency Advantage In Polish Counties and County-Like Cities.} The gender gap is similar in magnitude to that of Norwegian municipalities.",
     booktabs = TRUE,
     add_rows = row_mat,
     output = "latex"

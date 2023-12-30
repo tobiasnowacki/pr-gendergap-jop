@@ -1,0 +1,297 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(lfe)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+> options("modelsummary_format_numeric_latex" = "plain")
+>
+>
+> source("code/utils/run_het_rd.R")
+>
+> # Load data in
+> rd_dat <- read.csv("data/spain_rd_ready.csv",
++   row.names = NULL
++ ) %>%
++   filter(pop < 20000) %>%
++   filter(abs(winmargin_loc) < 0.5) %>%
++   filter(winmargin_loc != 0) %>%
++   mutate(rank_diff = (rank_again - rank))
+>
+> # Throw out cities that cross pop border...
+> city_cross <- rd_dat %>%
++   select(city_id, year, pop) %>%
++   distinct() %>%
++   group_by(city_id) %>%
++   arrange(city_id, year) %>%
++   mutate(
++     pop_next = lead(pop),
++     crosses = case_when(
++       pop < 3000 ~ pop_next > 3000,
++       pop > 3000 ~ pop_next < 3000
++     )
++   ) %>%
++   group_by(city_id) %>%
++   summarise(ct = sum(crosses > 0, na.rm = TRUE))
+>
+> rd_dat <- rd_dat %>%
++   filter(city_id %in% city_cross$city_id[city_cross$ct == 0])
+>
+> # # Code numeric female indicator
+> # rd_dat = rd_dat %>%
+> #     mutate(female = case_when(
+> #     sex_imputed == "F" ~ 1,
+> #     sex_imputed == "M" ~ 0,
+> #     ),
+> #     treat = winmargin_loc > 0) %>%
+> #     filter(!is.na(female)) %>%
+> #     group_by(province_id, municipality_id) %>%
+> #     mutate(city_id = cur_group_id()) %>%
+> #     group_by(province_id, municipality_id, year) %>%
+> #     mutate(boot_id = cur_group_id()) %>%
+> #     rename(winmargin_loc = winmargin_loc)
+>
+>
+> run_results_below <- run_het_rd(rd_dat %>% filter(pop %in% 250:3000, year > 2007),
++   "run_again",
++   "winmargin_loc",
++   "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(province_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
++   bw_fac = c(1)
++ )
+0.0296942>
+> run_results_above <- run_het_rd(rd_dat %>% filter(pop %in% 3001:6000, year > 2007),
++   "run_again",
++   "winmargin_loc",
++   "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(province_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
++   bw_fac = c(1)
++ )
+0.0312658>
+> # run_results_before = run_het_rd(rd_dat %>% filter(pop < 5000, year < 2007),
+> #            "run_again",
+> #            "winmargin_loc",
+> #            "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(city_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
+> #            bw_fac = c(1))
+>
+> win_results_below <- run_het_rd(rd_dat %>% filter(pop %in% 250:3000, year > 2007),
++   "win_again",
++   "winmargin_loc",
++   "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(province_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
++   bw_fac = c(1)
++ )
+0.02930034>
+> win_results_above <- run_het_rd(rd_dat %>% filter(pop %in% 3001:6000, year > 2007),
++   "win_again",
++   "winmargin_loc",
++   "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(province_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
++   bw_fac = c(1)
++ )
+0.0290018>
+> dd_df <- rd_dat %>%
++   filter(abs(winmargin_loc) < 0.01) %>%
++   filter(pop %in% 1000:5000, year > 2007)
+>
+> felm(win_again ~ treat + female + treat:female + I(pop > 3000) + treat:I(pop > 3000) + female:I(pop > 3000) + treat:female:I(pop > 3000) | as.factor(province_id) + as.factor(year) + as.factor(year):as.factor(party_short) | 0 | city_id, data = dd_df) %>% summary()
+
+Call:
+   felm(formula = win_again ~ treat + female + treat:female + I(pop >      3000) + treat:I(pop > 3000) + female:I(pop > 3000) + treat:female:I(pop >      3000) | as.factor(province_id) + as.factor(year) + as.factor(year):as.factor(party_short) |      0 | city_id, data = dd_df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-0.6427 -0.2853 -0.1910  0.4322  0.9911
+
+Coefficients:
+                                    Estimate Cluster s.e. t value Pr(>|t|)
+treatTRUE                           0.071299     0.035174   2.027   0.0429 *
+female                              0.001547     0.040459   0.038   0.9695
+I(pop > 3000)TRUE                  -0.044501     0.048778  -0.912   0.3618
+treatTRUE:female                    0.037588     0.061629   0.610   0.5420
+treatTRUE:I(pop > 3000)TRUE         0.125601     0.074457   1.687   0.0919 .
+female:I(pop > 3000)TRUE           -0.045233     0.074108  -0.610   0.5417
+treatTRUE:female:I(pop > 3000)TRUE -0.035911     0.116514  -0.308   0.7580
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.4351 on 1249 degrees of freedom
+Multiple R-squared(full model): 0.08041   Adjusted R-squared: 0.0193
+Multiple R-squared(proj model): 0.02136   Adjusted R-squared: -0.04368
+F-statistic(full model, *iid*):1.316 on 83 and 1249 DF, p-value: 0.03375
+F-statistic(proj model): 3.935 on 7 and 763 DF, p-value: 0.0003138
+*** Standard errors may be too high due to more than 2 groups and exactDOF=FALSE
+
+
+>
+> rd_df1 <- rd_dat %>%
++   filter(abs(winmargin_loc) < 0.05) %>%
++   filter(pop %in% 1000:5000, year > 2007) %>%
++   filter(treat == FALSE & female == 1)
+>
+> rdplot(x = rd_df1$pop, y = rd_df1$win_again, c = 3000, p = 1)
+[1] "Mass points detected in the running variable."
+> rdrobust(x = rd_df1$pop, y = rd_df1$win_again, c = 3000, p = 1) %>% summary()
+Sharp RD estimates using local polynomial regression.
+
+Number of Obs.                 1302
+BW type                       mserd
+Kernel                   Triangular
+VCE method                       NN
+
+Number of Obs.                  957          345
+Eff. Number of Obs.             235          115
+Order est. (p)                    1            1
+Order bias  (q)                   2            2
+BW est. (h)                 740.195      740.195
+BW bias (b)                1240.171     1240.171
+rho (h/b)                     0.597        0.597
+Unique Obs.                     699          280
+
+=============================================================================
+        Method     Coef. Std. Err.         z     P>|z|      [ 95% C.I. ]
+=============================================================================
+  Conventional     0.129     0.115     1.125     0.261    [-0.096 , 0.354]
+        Robust         -         -     1.106     0.269    [-0.118 , 0.423]
+=============================================================================
+Warning message:
+In rdrobust(x = rd_df1$pop, y = rd_df1$win_again, c = 3000, p = 1) :
+  Mass points detected in the running variable.
+>
+>
+>
+> # win_results_before = run_het_rd(rd_dat %>% filter(pop < 5000, year < 2007),
+> #            "win_again",
+> #            "winmargin_loc",
+> #            "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(city_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
+> #            bw_fac = c(1))
+>
+> # rank_results = run_het_rd(rd_dat,
+> #            "rank_again",
+> #            "winmargin_loc",
+> #            "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(city_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id")
+>
+> results <- list(
++   run_results_below,
++   run_results_above,
++   win_results_below,
++   win_results_above
++ ) %>% flatten()
+>
+>
+> results_tidy <- map(results, ~ .x$out)
+> n_left <- map_dbl(results, ~ .x$n_left)
+> n_right <- map_dbl(results, ~ .x$n_right)
+> n_mean <- map_dbl(results, ~ .x$out_mean) %>% signif(3)
+> bwv <- map_dbl(results, ~ .x$bw) %>% signif(2)
+>
+> # Wrap multicolumn around header (to make it centred with decimal alignment)
+> apply_mc <- function(x) {
++   return(c(paste0("\\multicolumn{1}{c}{", x, "}")))
++ }
+> names(results_tidy) <- paste0("(", 1:length(results_tidy), ")") %>% apply_mc()
+>
+> row_mat <- matrix(
++   ncol = length(n_left) + 1, byrow = TRUE,
++   c(
++     "Pop", apply_mc(rep(c("0-3k", "3-6k"), times = 2)),
++     "Bandwidth", bwv,
++     "Outcome Mean", n_mean,
++     "N (left)", apply_mc(n_left),
++     "N (right)", apply_mc(n_right)
++   )
++ ) %>%
++   as.data.frame()
+>
+> clist <- c(
++   "treatTRUE" = "Elected",
++   "female" = "Female",
++   "treatTRUE:female" = "Elected x Female"
++ )
+>
+> tex_out <- modelsummary(results_tidy,
++   coef_map = clist,
++   gof_omit = ".*",
++   caption = "\\label{tab:spain_by_quota} \\textbf{Heterogeneity-in-DiscontinuityEstimates For Incumbency Advantage In Spanish Municipalities, By Quota Law.} The estimates for the gender gap are similar in municipalities with and without the gender quota on lists.",
++   booktabs = TRUE,
++   add_rows = row_mat,
++   output = "latex"
++ ) %>%
++   kable_styling(
++     font_size = 9,
++     latex_options = "hold_position"
++   ) %>%
++   footnote(
++     threeparttable = TRUE,
++     fixed_small_size = FALSE,
++     footnote_as_chunk = TRUE,
++     general_title = "",
++     general = c("All estimates are reported with robust standard errors clustered at the municipality level in parentheses. Each observation is a candidate's election attempt. 'Elected' is an indicator for observations where the candidate obtained a seat in the municipal council. 'Female' is an indicator for observations identified as female. `Elected` times `Female` is the interaction between the two variables. Other coefficients not reported. `Pop' indicates the population of a candidate's municipality at time $t$. Regression run on all candidates in elections between 2011 and 2015. Observations in municipalities that crossed the 3,000 population threshold in between elections are excluded.")
++   ) %>%
++   add_header_above(c(" " = 1, "Run (t+1)" = 2, "Win (t+1)" = 2)) %>%
++   row_spec(c(2, 4), extra_latex_after = "\\addlinespace") %>%
++   row_spec(6, extra_latex_after = "\\addlinespace \\midrule \\addlinespace") %>%
++   column_spec(2:5, latex_column_spec = "S[
++               input-symbols=(),
++               table-format=-2.3,
++               table-space-text-pre    = (,
++               table-space-text-post   = ),
++               input-open-uncertainty  =,
++               input-close-uncertainty = ,
++               table-align-text-post = false]") %>%
++   gsub(pattern = "\\textbackslash{}", replacement = "\\", fixed = TRUE) %>%
++   gsub(pattern = "\\{", replacement = "{", fixed = TRUE) %>%
++   gsub(pattern = "\\}", replacement = "}", fixed = TRUE)
+>
+> cat(tex_out, file = "output/tables/spain_by_quota.tex")
+>
+> proc.time()
+   user  system elapsed
+ 13.512   0.826  15.074

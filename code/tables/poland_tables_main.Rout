@@ -24,7 +24,7 @@ Type 'q()' to quit R.
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
 ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
+✔ purrr     1.0.2
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -56,16 +56,18 @@ Loading required package: usethis
 ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
 Registering fonts with R
 Loading required package: viridisLite
-> 
+>
+> options(modelsummary_format_numeric_latex = "plain")
+>
 > source("code/utils/run_het_rd.R")
-> 
+>
 > # Parties to keep
 > parties_keep <- c(
 +     "Komitet Wyborczy Platforma Obywatelska RP",
 +     "Komitet Wyborczy Prawo i Sprawiedliwość",
 +     "koalicyjny komitet wyborczy platforma.nowoczesna koalicja obywatelska"
 + ) %>% tolower()
-> 
+>
 > # Load data
 > rd_dat <- read.csv("data/poland_county.csv") %>%
 +     filter(
@@ -79,7 +81,7 @@ Loading required package: viridisLite
 +         treat = ifelse(elected == "T", 1, 0)
 +     ) %>%
 +     filter(listname %in% parties_keep)
-> 
+>
 > # Estimate RD running again
 > run_results <- run_het_rd(
 +     rd_dat,
@@ -87,7 +89,7 @@ Loading required package: viridisLite
 +     "running",
 +     "running + treat + female + running:treat + running:female + treat:female + running:treat:female | as.factor(unitid) + as.factor(year) + as.factor(listname):as.factor(year) | 0 | unitid"
 + )
-0.0653253 0.1306506 0.03266265> 
+0.0653253 0.1306506 0.03266265>
 > # Estimate RD winning again
 > win_results <- run_het_rd(
 +     rd_dat,
@@ -95,22 +97,22 @@ Loading required package: viridisLite
 +     "running",
 +     "running + treat + female + running:treat + running:female + treat:female + running:treat:female | as.factor(unitid) + as.factor(year) + as.factor(listname):as.factor(year) | 0 | unitid"
 + )
-0.05888709 0.1177742 0.02944354> 
+0.05888709 0.1177742 0.02944354>
 > # Wrangle results into table for export
 > results_out <- append(run_results, win_results)
 > results_tidy <- map(results_out, ~ .x$out)
-> 
+>
 > n_left <- map_dbl(results_out, ~ .x$n_left)
 > n_right <- map_dbl(results_out, ~ .x$n_right)
 > n_mean <- map_dbl(results_out, ~ .x$out_mean) %>% signif(3)
 > bwv <- map_dbl(results_out, ~ .x$bw) %>% signif(2)
-> 
+>
 > # Wrap multicolumn around header (to make it centred with decimal alignment)
 > apply_mc <- function(x) {
 +     return(c(paste0("\\multicolumn{1}{c}{", x, "}")))
 + }
 > names(results_tidy) <- paste0("(", 1:length(results_tidy), ")") %>% apply_mc()
-> 
+>
 > # Prepare table elements
 > row_mat <- matrix(
 +     ncol = length(n_left) + 1, byrow = TRUE,
@@ -123,18 +125,18 @@ Loading required package: viridisLite
 +     )
 + ) %>%
 +     as.data.frame()
-> 
+>
 > clist <- c(
 +     "treat" = "Elected",
 +     "female" = "Female",
 +     "treat:female" = "Elected x Female"
 + )
-> 
+>
 > # Export table
 > tex_out <- modelsummary(results_tidy,
 +     coef_map = clist,
 +     gof_omit = ".*",
-+     caption = "\\label{tab:poland_main} \\textbf{Difference-in-Discontinuity Estimates For Incumbency Advantage In Polish Counties and County-Like Cities.} The gender gap is similar in magnitude to that of Norwegian municipalities.",
++     caption = "\\label{tab:poland_main} \\textbf{Heterogeneity-in-DiscontinuityEstimates For Incumbency Advantage In Polish Counties and County-Like Cities.} The gender gap is similar in magnitude to that of Norwegian municipalities.",
 +     booktabs = TRUE,
 +     add_rows = row_mat,
 +     output = "latex"
@@ -164,26 +166,9 @@ Loading required package: viridisLite
 +     gsub(pattern = "\\textbackslash{}", replacement = "\\", fixed = TRUE) %>%
 +     gsub(pattern = "\\{", replacement = "{", fixed = TRUE) %>%
 +     gsub(pattern = "\\}", replacement = "}", fixed = TRUE)
-Warning message:
-To compile a LaTeX document with this table, the following commands must be placed in the document preamble:
-
-\usepackage{booktabs}
-\usepackage{siunitx}
-\newcolumntype{d}{S[
-    input-open-uncertainty=,
-    input-close-uncertainty=,
-    parse-numbers = false,
-    table-align-text-pre=false,
-    table-align-text-post=false
- ]}
-
-To disable `siunitx` and prevent `modelsummary` from wrapping numeric entries in `\num{}`, call:
-
-options("modelsummary_format_numeric_latex" = "plain")
- This warning appears once per session. 
-> 
+>
 > cat(tex_out, file = "output/tables/poland_main.tex")
-> 
+>
 > proc.time()
-   user  system elapsed 
-  6.465   0.432   7.532 
+   user  system elapsed
+  6.033   0.371   6.808

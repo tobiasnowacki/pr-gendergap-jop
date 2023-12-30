@@ -18,14 +18,16 @@ Type 'demo()' for some demos, 'help()' for on-line help, or
 Type 'q()' to quit R.
 
 > library(tidyverse)
-── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──
-✔ ggplot2 3.3.5     ✔ purrr   0.3.4
-✔ tibble  3.1.6     ✔ dplyr   1.0.8
-✔ tidyr   1.2.0     ✔ stringr 1.4.0
-✔ readr   2.0.2     ✔ forcats 0.5.1
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 > library(rio)
 > library(rdrobust)
 > library(modelsummary)
@@ -41,7 +43,7 @@ The following object is masked from ‘package:dplyr’:
 > library(devtools)
 Loading required package: usethis
 > source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
-ℹ SHA-1 hash of file is 24d50dc41518460caa7dd1e4f46697f9eb053e29
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
 Registering fonts with R
 Loading required package: viridisLite
 > source("code/utils/het_by_sex_plot.R")
@@ -87,12 +89,12 @@ Loading required package: viridisLite
 +         panel.border = element_blank(),
 +         panel.background = element_blank()
 +     )
-Scale for 'y' is already present. Adding another scale for 'y', which will
-replace the existing scale.
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
 There were 50 or more warnings (use warnings() to see the first 50)
 > ggsave("output/figures/norway_run_again.pdf", device = cairo_pdf, width = 4, height = 2.5)
 Warning message:
-Removed 21 rows containing missing values (geom_point). 
+Removed 21 rows containing missing values (`geom_point()`). 
 > 
 > # plotting winning again on rd
 > out_win <- het_by_sex_plot(rd_dat, "win_again")
@@ -124,13 +126,13 @@ Removed 21 rows containing missing values (geom_point).
 +         panel.border = element_blank(),
 +         panel.background = element_blank()
 +     )
-Scale for 'y' is already present. Adding another scale for 'y', which will
-replace the existing scale.
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
 There were 50 or more warnings (use warnings() to see the first 50)
 > ggsave("output/figures/norway_win_again.pdf", device = cairo_pdf, width = 4, height = 2.5)
 Warning message:
-Removed 19 rows containing missing values (geom_point). 
+Removed 19 rows containing missing values (`geom_point()`). 
 > 
 > proc.time()
    user  system elapsed 
-  5.122   0.404   5.718 
+  7.345   0.562   8.026 

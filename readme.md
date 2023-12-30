@@ -11,8 +11,12 @@ devtools
 rdrobust
 modelsummary
 kableExtra
+fixest
 broom
 lfe
+gbm
+Matching
+fabricatr
 ```
 
 To replicate all code run the following terminal command from the root folder of the repository:

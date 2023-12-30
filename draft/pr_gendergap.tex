@@ -1,3 +1,10 @@
+%TODO Go through appendix and check which models are still missing
+%% norway matching
+%% norway terciles
+%% full coefficient print
+% check all results are the same as in original draft
+% remove unnecessary comments from appendix
+
 \documentclass[12pt]{article}
 \input{header}
 
@@ -57,7 +64,7 @@
 
 \singlespacing
 \begin{abstract}
-    Does proportional representation feature gender gaps in incumbency advantages?  I argue that closed-list PR (compared to open-list PR) can help to attenuate the gender difference by reducing voters' influence over individual candidates' electoral outcomes. Using difference-in-discontinuity designs, I contrast gender-specific incumbency effects in municipal elections across Norway (open-list) and Spain (closed-list). In Norway, women experience an incumbency advantage in winning future elections that is up to 60\% smaller than men's; in Spain, female candidates enjoy incumbency effects equal to or greater than men's. Additional results suggest that these findings are unlikely to be due to unobserved country characteristics or differential selection. Although more suggestive, further evidence is consistent with voter bias entering through preference votes for individual candidates -- especially in right-wing parties -- as a key mechanism for the gender gap in open-list PR. All told, this paper highlights the importance of electoral rules in ensuring gender equity in political representation by addressing leaky pipelines in office.
+    Does proportional representation feature gender gaps in incumbency advantages?  I argue that closed-list PR (compared to open-list PR) can help to attenuate the gender difference by reducing voters' influence over individual candidates' electoral outcomes. Using heterogeneity-in-discontinuity designs, I contrast gender-specific incumbency effects in municipal elections across Norway (open-list) and Spain (closed-list). In Norway, women experience an incumbency advantage in winning future elections that is up to 60\% smaller than men's; in Spain, female candidates enjoy incumbency effects equal to or greater than men's. Additional results suggest that these findings are unlikely to be due to unobserved country characteristics or differential selection. Although more suggestive, further evidence is consistent with voter bias entering through preference votes for individual candidates -- especially in right-wing parties -- as a key mechanism for the gender gap in open-list PR. All told, this paper highlights the importance of electoral rules in ensuring gender equity in political representation by addressing leaky pipelines in office.
 \end{abstract}
 
 Keywords: incumbency advantage; gender gap; local elections; proportional representation; electoral systems
@@ -88,14 +95,12 @@ Do PR systems struggle with a gender gap in political career trajectories? More 
 
 In this paper, I study how different forms of PR (open versus closed-list) shape the gender gap in the effect of winning office on future election outcomes -- typically the next step in the career trajectory after winning office. I argue that elections using closed-list PR -- compared to those with open-list PR -- are more likely to plug the 'leaky pipeline' by limiting voters' influence over individual candidates' ranking, which may otherwise disadvantage women disproportionately due to voter or systemic bias. In closed-list PR, incumbency advantages arise from party elites' decisions to elevate candidates throughout list ranks. Though party elites may have initial negative biases against women, they have little reason to treat bare winners (compared to bare losers) differentially by gender \citep{luhiste2015,hazan2006a}.\footnote{If anything, their initial bias towards women should diminish upon observing them perform in office \citep{kjaer2019}} By contrast, in open-list systems, the effect of being elected on future election outcomes may be differentially greater for men due to a larger increase in personal votes for barely elected male candidates. This gap will be especially pronounced where voters are biased against women, or systemic disadvantages (e.g., smaller name recognition bonuses for women as an effect of incumbency) exist. Overall, this framework implies that women may face diminished incumbency effects in open-list PR systems, while we can expect an equal or even greater incumbency advantage for women in closed-list PR systems. This argument regarding \emph{incumbency advantages} stands in contrast to recent work investigating whether different electoral systems or kinds of PR can improve overall levels of female representation \citep{stegmaier2014women,golder2017a}.
 
-Empirical results from difference-in-discontinuity designs in municipal elections -- typically the first rung in the political career ladder \citep{cirone2020} -- in Norway and Spain are consistent with the theoretical argument. The results support the claim that voter or systemic bias against female candidates can hamper their incumbency advantage in more candidate-centric variants of PR.
+Empirical results from heterogeneity-in-discontinuity designs in municipal elections -- typically the first rung in the political career ladder \citep{cirone2020} -- in Norway and Spain are consistent with the theoretical argument. The results support the claim that voter or systemic bias against female candidates can hamper their incumbency advantage in more candidate-centric variants of PR.
 
-In Norway's open-list elections, barely elected women enjoy a significantly smaller incumbency advantage compared to their male colleagues.\footnote{This result is further supported by aggregate descriptive statistics: the general incumbent re-election rate in Norway's local elections stands at 46.6\% for men, while for women, it is 38.2\%.} Whereas men who barely won (compared to men who barely lost) have an approximately 10 percentage point higher probability of winning in the next election, the effect decreases to about 4 percentage points for women who barely won (compared to women who barely lost) -- a 60\% decline vis-a-vis men.\footnote{\label{fn:norway_system}
-
-Voters award preference votes to candidates, which determines their list ranking within the set of candidates fielded by the party. Voter preferences have a meaningful impact on deciding what candidates get elected: \citet{bergh2010} estimate about 25\% of candidates won office because voters' preference votes, rather than list ranking.
+In Norway's open-list elections, barely elected women enjoy a significantly smaller incumbency advantage compared to their male colleagues.\footnote{This result is further supported by aggregate descriptive statistics: the general incumbent re-election rate in Norway's local elections stands at 46.6\% for men, while for women, it is 38.2\%.} Whereas men who barely won (compared to men who barely lost) have an approximately 10 percentage point higher probability of winning in the next election, the effect decreases to about 4 percentage points for women who barely won (compared to women who barely lost) -- a 60\% decline vis-a-vis men.\footnote{\label{fn:norway_system} Voters award preference votes to candidates, which determines their list ranking within the set of candidates fielded by the party. Voter preferences have a meaningful impact on deciding what candidates get elected: \citet{bergh2010} estimate about 25\% of candidates won office because voters' preference votes, rather than list ranking.
 While more complex classifications of PR systems may describe Norway's system as `flexible-list' or `semi-open list', I follow the existing literature that recognizes Norway's municipal elections as 'open-list' \citep{fiva2018a, fiva2018b}.} Women in Spain's closed-list elections, by contrast, likely enjoy a differentially greater incumbency advantage than their male colleagues. Importantly, I find no evidence of large gender gaps in career \emph{persistence} in either setting: the effect of winning on the probability of running again is likely similar for men and women in either country.
 
-I supplement the difference-in-discontinuity design with additional evidence to guard against concerns about case selection and differential selection into the threshold sample. While the difference-in-discontinuity design causally identifies the incumbency advantage within each gender, male and female candidate threshold samples may differ in individual-level (age, experience) as well as election-level and geographic attributes. I find that the magnitude of the gender gap in open-list persists when restricting the comparison to female candidates and the most similar male candidate with respect to age, experience and election year in the same party and county.
+I supplement the heterogeneity-in-discontinuity design with additional evidence to guard against concerns about case selection and differential selection into the threshold sample. While the heterogeneity-in-discontinuity design causally identifies the incumbency advantage within each gender, male and female candidate threshold samples may differ in individual-level (age, experience) as well as election-level and geographic attributes. I find that the magnitude of the gender gap in open-list persists when restricting the comparison to female candidates and the most similar male candidate with respect to age, experience and election year in the same party and county.
 
 Second, if the magnitude of differential selection varies across cases, my contrast between open-list and closed-list PR may be an artefact of case selection. To address this concern, I leverage both within- and cross-country variance in electoral rules using data from Norway and Poland to show that the contrast between open- and closed-list PR, rather than idiosyncratic country effects, can explain the gender gap in incumbency advantages.
 
@@ -103,7 +108,7 @@ Finally, I provide suggestive evidence for the theorized mechanism behind the ne
 Specifically, although women are unlikely to face a differential penalty imposed by their \emph{party} for being elected \citep{kjaer2019}, the effect of winning in right-wing parties results in a far smaller increase, or potentially even decrease, in personal preference votes cast by voters for women when compared to men. Notably, no such discrepancy exists among candidates in left-wing parties, whose voters are more positively predisposed towards women in local politics. Voters' influence over list ranking -- the key difference between open and closed-list PR -- thus likely contributes to the stark difference in incumbency advantage gender gaps across PR systems. Altogether, although suggestive, the evidence in this paper emphasizes the role that voter or systemic biases can have in influencing incumbency advantages where the electoral system is more candidate-centric.
 
 This paper connects and contributes to a number of existing literatures. It offers a new explanation for how electoral rules can affect gender equity in politics \citep{krook2014,obrien2016,krook2018,luhiste2015}.
-Although existing work suggests that voter biases that affect women's \emph{unconditional} probability of being elected in the first place may be context- and election-specific \citep{folke2016a, anzia2019, beaman2009,broockman2020,eymmoud2017}, this paper is the first that documents and highlights the contrast in incumbency gender gaps across open- and closed-list PR using difference-in-discontinuity designs. In doing so, it also, for the first time, documents a greater incumbency advantage for women than for men under closed-list PR. It also contributes the use of an RD-style design on intermediate outcomes to provide suggestive evidence for the role of voter or systemic bias in open-list PR. More generally, it adds to a growing literature of works that study how candidates' gender affects incumbency advantage mechanisms under PR \citep{schwindt-bayer2005,jankowski2019,smrek2020}, and whether voters reward incumbency differentially by gender.
+Although existing work suggests that voter biases that affect women's \emph{unconditional} probability of being elected in the first place may be context- and election-specific \citep{folke2016a, anzia2019, beaman2009,broockman2020,eymmoud2017}, this paper is the first that documents and highlights the contrast in incumbency gender gaps across open- and closed-list PR using heterogeneity-in-discontinuity designs. In doing so, it also, for the first time, documents a greater incumbency advantage for women than for men under closed-list PR. It also contributes the use of an RD-style design on intermediate outcomes to provide suggestive evidence for the role of voter or systemic bias in open-list PR. More generally, it adds to a growing literature of works that study how candidates' gender affects incumbency advantage mechanisms under PR \citep{schwindt-bayer2005,jankowski2019,smrek2020}, and whether voters reward incumbency differentially by gender.
 
 Beyond making the important distinction between open- and closed-list PR, the paper also offers a benchmark to evaluate the incumbency gender gap in PR systems against plurality \citep{wasserman2020, cipullo2021, brown2019}. Finally, the paper speaks to the broader literature on political careers \citep{cirone2020,kerevel2019,folke2014} and offers an important theoretical distinction between the mechanisms driving incumbency advantages in open and closed-list PR systems more generally.
 
@@ -198,7 +203,7 @@ How can we study the gender gap in political careers, and incumbency advantages 
 
 \subsection{Cases and Data}
 
-In an ideal world, my case selection would exploit within-country (and within-election) variation in electoral rules to mitigate the concern of unobserved cross-country differences. Unfortunately, no such straightforward setting exists that would allow for estimation with sufficient statistical power.\footnote{I do leverage variation in Norway's electoral rules across tiers of government later in the paper. However, the results from higher-order elections are noisy, as difference-in-discontinuity designs require a lot of data for sufficient power.} Instead, I turn to a comparison of local elections across countries. By studying local elections -- the typical entry point for political careers -- we can understand whether electoral systems can have repercussions for women's political careers that cascade into higher levels of office, and contribute to fewer and less experienced female candidates in more senior offices \citep{cirone2020}.
+In an ideal world, my case selection would exploit within-country (and within-election) variation in electoral rules to mitigate the concern of unobserved cross-country differences. Unfortunately, no such straightforward setting exists that would allow for estimation with sufficient statistical power.\footnote{I do leverage variation in Norway's electoral rules across tiers of government later in the paper. However, the results from higher-order elections are noisy, as heterogeneity-in-discontinuity designs require a lot of data for sufficient power.} Instead, I turn to a comparison of local elections across countries. By studying local elections -- the typical entry point for political careers -- we can understand whether electoral systems can have repercussions for women's political careers that cascade into higher levels of office, and contribute to fewer and less experienced female candidates in more senior offices \citep{cirone2020}.
 
 To estimate the gender gap in incumbency advantages, I use local elections between 2003 and 2019 in two countries -- Norway (open-list) and Spain (closed-list), along with supplementary data from Poland's open-list county elections.\footnote{In both cases, this is the widest range of elections for which data is available. Given the overall increasing trend in women's representation over time, including data from years prior will yield a diminishing contribution to improved statistical power; moreover, it is unclear if estimating the gender gap from more than two decades ago would yield informative results about today's career dynamics.}
 
@@ -230,13 +235,13 @@ This set-up is closely related to estimating the moderation effect of gender on 
 
 My key outcomes after the first election are whether the candidate \emph{runs again} in the next election, and whether they \emph{win} in the next election. Following \citet{demagalhaes2015}, I am interested in the unconditional effect of winning in $t$ on election in $t+1$ -- that is, if a candidate does not run again in $t + 1$, they are coded as a `0' on re-election.\footnote{Conditioning on running again in the future runs the risk of introducing post-treatment bias. See also \citet{hyytinen2018a,cirone2020}.} I focus on the next election outcome as my primary interest, because it is the immediate next step in politicians' careers. If a gender gap already exists at this stage, it will proliferate into future outcomes such as running (or winning) in $t + 2$ or running (or winning) in higher-order elections. Estimating the gender gap at the first stepping stone therefore provides the most direct measurement of the level of gender inequity.
 
-\subsubsection{Estimating the Gender Gap Using A Difference-in-Discontinuity Design}
+\subsubsection{Estimating the Gender Gap Using A Heterogeneity-in-Discontinuity Design}
 
 How can we estimate the theoretical quantity of interest? A typical regression discontinuity (RD) design, widely applied in the study of incumbency effects \citep[e.g.][]{lee2001a,demagalhaes2015,folke2016d}, compares candidates who have just missed out on being elected by a few votes to those who have just crossed the threshold and found themselves elected. The design recovers the local average treatment effect of being elected. It retains its causal interpretation when restricted to a comparison within a subgroup, in which case the RD design recovers the subgroup-specific local average treatment effect.
 
 While the incumbency effect \emph{within} each gender can be causally identified using a regression discontinuity between bare winners and bare losers, the \emph{difference} between the two conditional effects is not causally identified \citep{wasserman2020,brown2019}. Male and female candidates around the election threshold may differ from one another on a number of observable as well as unobservable characteristics. In that sense, the main objective of the paper, consistent with the previously defined estimand, is to estimate whether there is heterogeneity in the magnitude of the incumbency effect based on candidates' gender (and the bundle of differences associated with it).
 
-To study the heterogeneity in the incumbency effect between male and female candidates, I estimate the following difference-in-discontinuity specification:
+To study the heterogeneity in the incumbency effect between male and female candidates, I estimate the following heterogeneity-in-discontinuity specification:
 
 \begin{align}
 \begin{split}
@@ -265,7 +270,7 @@ In the context of PR elections, constructing the running variable and identifyin
 \begin{figure}[htbp]
     \centering
     \includegraphics[width = 0.8\textwidth]{../output/figures/coef_summary.pdf}
-    \caption{\textbf{Estimated Gender Gap in Incumbency Advantages Across Cases.} Point estimates from preferred difference-in-discontinuity specifications, with 95\% Confidence Intervals.}
+    \caption{\textbf{Estimated Gender Gap in Incumbency Advantages Across Cases.} Point estimates from preferred heterogeneity-in-discontinuity specifications, with 95\% Confidence Intervals.}
     \label{fig:coef_summary}
 \end{figure}
 
@@ -299,7 +304,7 @@ In the remainder of this section, I parse these headline results in greater deta
 
 \subsection{Norway (Open-List PR)}
 
-Turning to Norway's open-list elections first, Table \ref{tab:norway_main} backs up the graphical intuition with formal evidence in the form of difference-in-discontinuity estimates. Columns 1 to 3 report estimates of the effect of winning on running again in $t + 1$. Both the effect of being elected, as well as the gender gap coefficient, are close to zero across all bandwidth choices.
+Turning to Norway's open-list elections first, Table \ref{tab:norway_main} backs up the graphical intuition with formal evidence in the form of heterogeneity-in-discontinuity estimates. Columns 1 to 3 report estimates of the effect of winning on running again in $t + 1$. Both the effect of being elected, as well as the gender gap coefficient, are close to zero across all bandwidth choices.
 
 \input{../output/tables/norway_main.tex}
 
@@ -320,7 +325,7 @@ the effect of winning an election on running again appears to be of a very simil
 \input{../output/tables/spain_main.tex}
 
 Columns 4 to 6 provide clear evidence that the incumbency effect on winning again is at least as great, if not bigger, for women.
-Men experience an incumbency effect of an approximately 7 percentage point increase in their probability of winning the next election.\footnote{See Appendix \ref{app:rd_polynomial} for robustness to polynomial order, and Appendix \ref{app:bandwidth_sensitivity} for robustness to bandwidth choice. I also leverage the large number of observations in order to estimate a diff-in-diff sufficiently close to the threshold (within 1 percentage point) in Appendix \ref{app:spain_did}. The estimates are consistent with the results from Table~\ref{tab:spain_main}, and further point towards no large gender gap in the effect of winning on running again.} The gender gap coefficient is positive, and statistically significant at the optimal bandwidth (though not at other values), suggesting that the incumbency advantage is an additional 5 to 6 percentage points larger for women. This set of results suggests that women in Spanish local elections enjoy a somewhat \emph{greater} incumbency advantage than their male colleagues -- much in contrast to the findings in Norway's open-list PR setting.\footnote{In Appendix \ref{app:spain_by_party}, I check for any meaningful differences if I estimate the difference-in-discontinuity separately for either of Spain's two major parties. Second, in Appendix \ref{app:spain_by_quota}, I evaluate whether the results are meaningfully different for municipalities above that implemented a legally binding gender quota -- mandating that at least 40\% of all candidates be women -- versus those that did not. I do not find evidence of a negative gender gap for women across either type of municipality. In Appendix \ref{app:hetero_spain}, I also find no meaningful evidence that estimates differ by cities' population size, although the positive gender gap may be attenuated towards zero in cities in the highest population tercile.}
+Men experience an incumbency effect of an approximately 7 percentage point increase in their probability of winning the next election.\footnote{See Appendix \ref{app:rd_polynomial} for robustness to polynomial order, and Appendix \ref{app:bandwidth_sensitivity} for robustness to bandwidth choice. I also leverage the large number of observations in order to estimate a diff-in-diff sufficiently close to the threshold (within 1 percentage point) in Appendix \ref{app:spain_did}. The estimates are consistent with the results from Table~\ref{tab:spain_main}, and further point towards no large gender gap in the effect of winning on running again.} The gender gap coefficient is positive, and statistically significant at the optimal bandwidth (though not at other values), suggesting that the incumbency advantage is an additional 5 to 6 percentage points larger for women. This set of results suggests that women in Spanish local elections enjoy a somewhat \emph{greater} incumbency advantage than their male colleagues -- much in contrast to the findings in Norway's open-list PR setting.\footnote{In Appendix \ref{app:spain_by_party}, I check for any meaningful differences if I estimate the heterogeneity-in-discontinuity separately for either of Spain's two major parties. Second, in Appendix \ref{app:spain_by_quota}, I evaluate whether the results are meaningfully different for municipalities above that implemented a legally binding gender quota -- mandating that at least 40\% of all candidates be women -- versus those that did not. I do not find evidence of a negative gender gap for women across either type of municipality. In Appendix \ref{app:hetero_spain}, I also find no meaningful evidence that estimates differ by cities' population size, although the positive gender gap may be attenuated towards zero in cities in the highest population tercile.}
 
 All told, the direct comparison between the results from Norway's open-list and Spain's closed-list elections is consistent with the theoretical argument that women suffer from disadvantages in incumbency effects where voters can determine individual candidates' list rankings. Still, on its own, this comparison cannot rule out that fundamental differences between Norway and Spain drive the set of results.
 
@@ -357,7 +362,7 @@ What mechanism accounts for the stark difference in gender-specific incumbency a
 
 Is the gender gap in the incumbency advantage persistent across parties from the entire spectrum of political ideologies? Both parties and voters following a more socially conservative ideology might be more inclined to exhibit a negative bias towards women, thus diminishing their incumbency advantage.\footnote{Appendix \ref{app:spain_by_party} repeats the same procedure for the Spanish case. } Although merely suggestive, a stark contrast between party families may also point towards voter bias, rather than universal, systemic bias, as a key mechanism.
 
-I estimate the difference-in-discontinuity separately on subsamples of candidates from left-leaning and right-leaning parties and report the results in Table \ref{tab:norway_by_party_inc}.\footnote{Parties classified as 'left' are Labour and the Socialist Left. Parties classified as `right' are the Conservatives, (the right-wing populist) Progress, the Christian Democratic Party, and the Liberal Party, corresponding to the two 'coalition blocs' in Norwegian politics. I exclude the Centre Party, which has joined both left-wing and right-wing coalitions in recent decades.}  Columns 1 and 2 report the effect of winning on running again by subsample. Although noisier than the main results, we see the same finding replicated as in Table \ref{tab:norway_main}. There is no meaningful effect of being elected on running again in the next election for male candidates; nor is there a statistically significant difference in the effect between genders.
+I estimate the heterogeneity-in-discontinuity separately on subsamples of candidates from left-leaning and right-leaning parties and report the results in Table \ref{tab:norway_by_party_inc}.\footnote{Parties classified as 'left' are Labour and the Socialist Left. Parties classified as `right' are the Conservatives, (the right-wing populist) Progress, the Christian Democratic Party, and the Liberal Party, corresponding to the two 'coalition blocs' in Norwegian politics. I exclude the Centre Party, which has joined both left-wing and right-wing coalitions in recent decades.}  Columns 1 and 2 report the effect of winning on running again by subsample. Although noisier than the main results, we see the same finding replicated as in Table \ref{tab:norway_main}. There is no meaningful effect of being elected on running again in the next election for male candidates; nor is there a statistically significant difference in the effect between genders.
 
 Columns 3 and 4 report the effect of winning on whether the candidate is elected in the next election. In left-wing parties, both the absolute incumbency effect for men, as well as the magnitude of the gender gap are smaller. Though the point estimate still suggests a 5 pp. lower incumbency advantage for women, the gender gap coefficient is no longer statistically significant in this subsample. By contrast, the gender gap is more pronounced in right-wing parties.
 
@@ -366,7 +371,7 @@ Here, male candidates who are bare winners enjoy an almost 13 percentage points 
 
 \subsection{Voters, Rather Than Party, May Drive Gender Gap}
 
-Do party elites or voters drive the diminished incumbency advantage for women? Exploiting the specific rules of Norway's open-list elections, I fit the difference-in-discontinuity design on additional outcomes pertaining to the next election and provide suggestive evidence that right-wing voters' behavior contributes to the diminished incumbency advantage for women.
+Do party elites or voters drive the diminished incumbency advantage for women? Exploiting the specific rules of Norway's open-list elections, I fit the heterogeneity-in-discontinuity design on additional outcomes pertaining to the next election and provide suggestive evidence that right-wing voters' behavior contributes to the diminished incumbency advantage for women.
 
 Recall that, party elites draw up an \emph{ex ante} ranking of candidates on the list, and award a \emph{pre-advantage} to select candidates (who receive a boost in preference vote shares as a result). However, if party elites are less likely to award these improvements to incumbent female candidates, this could explain the diminished incumbency advantage even though voters are no less likely to vote for women. Alternatively, if party elites exhibit no bias in the \emph{ex ante} placement of women, but there is a gender gap in the increase in preference votes awarded by voters upon winning the first time, then voters' male-favoring voting behavior may contribute to the diminished incumbency advantage for women.
 
@@ -407,5 +412,700 @@ It is also important to emphasize that, even beyond concerns about limiting vote
 \renewcommand*{\bibfont}{\small}
 \bibliographystyle{apsr_fs.bst}
 \bibliography{Spain_Careers.bib}
+
+
+
+\clearpage
+
+\appendix
+\setstretch{1}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\renewcommand{\thetable}{\Alph{section}\arabic{table}}
+\renewcommand{\thefigure}{\Alph{section}\arabic{figure}}
+\setcounter{page}{1}
+
+\addcontentsline{toc}{section}{Appendix} % Add the appendix text to the document TOC
+\part{Online Appendix} % Start the appendix part
+
+Intended for online publication only.
+
+\parttoc % Insert the appendix TOC
+
+\pagebreak
+
+\section{Illustrative Simulation of Open-List Theory}
+\label{app:theorysim}
+
+My argument in the paper rests on the idea that in open-list PR, female incumbents may receive a smaller boost in preference votes compared to male incumbents, thereby inducing a smaller effect of winning on the probability of winning again (incumbency advantage). In this appendix, I sketch out a toy model explaining what conditions may induce such a result.
+
+\subsection{Setup}
+
+In this toy model, I focus on candidates running in one party across two elections, in $t = 0$ and $t = 1$. To keep exposition simple, I assume that the party always fields 8 candidates and is slated to win 4 seats. Under the open-list system resembling Norway's (without pre-advantage votes), the party first draws up a list of candidates; voters then assign (up to) 4 preference votes. The four candidates with the highest preference vote share then win election.
+
+\noindent \textbf{Timing of the Game.} \\
+
+\textbf{Election at $t = 0$}
+
+\begin{enumerate}
+    \item Draw 2 initial incumbents with quality $\theta_i \sim \mathcal{U}[0.5, 1]$ and 6 additional candidates with quality $\theta_i \sim \mathcal{U}[0, 1]$. Here and thereafter, assume that every candidate drawn has an equal chance of being male and female.
+    \item The party elites observe a noisy (and possibly biased) quality signal, $\hat{\theta_i}$ and rank the initial list in descending order.
+    \item A unit mass of voters, comprising a share $p$ of (unbiased) quality-oriented voters, a share $r$ of (unbiased) heuristic voters, and a share $q$ of biased heuristic voters, casts their preference votes.
+    \item  The election is resolved; 4 successful candidates are designated as new incumbents.
+\end{enumerate}
+
+\textbf{Election at $t = 1$}
+
+\begin{enumerate}
+    \item Candidates from the previous election decide whether to run again; vacant candidacies are filled up with new draws, as before, with $\theta_i \sim \mathcal{U}[0, 1]$.
+    \item Incumbents who run again increase their quality $\theta_i$ by $0.05$.
+    \item  Once more, the party elites observe $\hat{\theta_i}$ and rank the initial list in descending order.
+    \item  The same unit mass of voters casts their preference votes; the election is then resolved.
+\end{enumerate}
+
+\paragraph*{Actors and Steps.}
+
+
+\emph{Party Elites.} Party elites observe a noisy and possibly biased quality signal:
+
+\begin{equation}
+\hat{\theta}_i = \theta_i + b_i \cdot 1(Female) + v_i \cdot 1(Incumbent) + u_i
+\end{equation}
+
+where $b_i \leq 0$ is a bias term for female candidates, $v_i \geq 0$ is a bias term for incumbents, and $u_i \sim \mathcal{N}(0, 0.05)$ is the noise term.
+
+\emph{Voters.} There are three types of voters.
+
+\begin{enumerate}
+    \item Quality-oriented voters observe a noisy signal $\tilde{\theta} = \theta + e_i$ where $e_i \sim \mathcal{N}(0, 0.1)$.
+    \item  Heuristic voters award preference votes to incumbents first. If there are fewer incumbents than available preference votes, they will award the remaining preference votes to non-incumbent candidates in descending list rank order, irrespective of gender.
+    \item Biased heuristic voters award preference votes in a similar manner to unbiased heuristic voters, except that they skip any and all female candidates.
+\end{enumerate}
+
+Of the unit mass of voters, there are $p$ quality-oriented voters, $r$ heuristic voters, and $q$ biased heuristic voters.
+
+\emph{Candidates.} At the beginning of $t = 1$, candidates who ran in $t = 0$ have to decide whether to run again. Incumbents will do so with probability $\pi_1 = 0.8$, while non-incumbents will do so with $\pi_0 = 0.4$.
+
+\subsection{Simulation}
+
+I simulate the model described above for different parameter values (scenarios). For every scenario, I run 100 iterations of 200 simulations each.
+
+I present the distribution of the probability of winning for three different subgroups of candidates at time $t = 1$:
+
+\begin{enumerate}
+    \item $Pr(Win_{t_1} | Won_{t_0})$, the win rate among incumbents;
+    \item $Pr(Win_{t_1} | Lost_{t_0})$, the win rate among previous losers;
+    \item $Pr(Win_{t_1} | Non-incumbent_{t_1})$, the win rate among all non-incumbents running in $t = 1$. This statistic gives us a sense of whether women face a `sticky floor' in getting elected in the first place.
+\end{enumerate}
+
+I introduce four different scenarios; for each scenario I run two sets of simulations: one with no party bias ($b_i = 0$) and one with some party bias ($b_i = -0.1$) against women, respectively. I also keep the party bias towards incumbents, $v_i = 0.1$ throughout.
+
+\subsection{Results}
+
+Figure \ref{fig:theory_sim} shows the shares of candidates (previous winners, previous losers, non-incumbents) who win in $t = 1$.
+Within each panel, we observe the probability of winning for candidates who won in $t = 0$, for candidates who lost in $t = 0$, and, in a lighter shade, for non-incumbents who ran in $t = 1$ (i.e., the unconditional probability of winning for non-incumbents).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics{../output/figures/theory_sim.pdf}
+    \caption{Simulation results showing probability of election for candidate subgroups across scenarios}
+    \label{fig:theory_sim}
+\end{figure}
+
+Crucially, we see no gender gaps between previous winners and previous losers across the first three scenarios. It is only when we add the biased heuristic voters into the election that we see that female candidates observe a smaller increase in their win probability as a result of incumbency when compared to men.
+
+
+\pagebreak
+\section{RD Robustness Checks: Main Results}
+
+In this section, I offer a number of checks to confirm that the main results in the paper are not sensitive to different specifications of the RD design.
+
+\subsection{Functional Form}
+\label{app:rd_polynomial}
+
+In this section, I assess the robustness of the main RD estimates with respect to functional form. Tables \ref{tab:norway_main_poly2} and \ref{tab:spain_main_poly2} below report the results from the main specification fitted with second-order polynomials. The results are consistent with the estimates from the linear specification.
+
+\subsubsection{Norway}
+
+\input{../output/tables/norway_main_poly2.tex}
+
+\clearpage
+\subsubsection{Spain}
+
+\input{../output/tables/spain_main_poly2.tex}
+
+\clearpage
+\subsection{Bandwidth Sensitivity}
+\label{app:bandwidth_sensitivity}
+
+Tables \ref{tab:norway_main} and \ref{tab:spain_main} report results of the heterogeneity-in-discontinuity specification with optimal bandwidth as selected by \citet{calonico2014} on the full sample, along with one-half and double that bandwidth. Below, I plot the coefficient estimates of interest with additional bandwidth parameters to ascertain that the results are robust to the choice of bandwidth.
+
+\subsubsection{Norway}
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[width = 1 \textwidth]{../output/figures/norway_run_again_bw.pdf}
+    \caption{Running in $t+1$}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[width = 1 \textwidth]{../output/figures/norway_win_again_bw.pdf}
+    \caption{Winning in $t+1$}
+    \end{subfigure}
+    \caption{\textbf{Bandwidth Sensitivity Check (Norway).} The plot shows the RD coefficients for `Elected` and `Elected x Female` in the case of Norway for different bandwidth choices.}
+    \label{fig:norway_bw_sens}
+\end{figure}
+
+\clearpage
+\subsubsection{Spain}
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[width = 1 \textwidth]{../output/figures/spain_run_again_bw.pdf}
+    \caption{Running in $t+1$}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[width = 1 \textwidth]{../output/figures/spain_win_again_bw.pdf}
+    \caption{Winning in $t+1$}
+    \end{subfigure}
+    \caption{\textbf{Bandwidth Sensitivity Check (Spain).} The plot shows the RD coefficients for `Elected` and `Elected x Female` in the case of Spain for different bandwidth choices.}
+    \label{fig:spain_bw_sens}
+\end{figure}
+
+\clearpage
+\pagebreak
+
+\subsection{Kernel Choice}
+\label{app:kernelchoice}
+
+Below, I present estimates from the main specification with triangular, rather than uniform kernels. The results are very similar to the preferred estimates in the main body of the paper in both countries.
+
+\input{../output/tables/norway_main_tri.tex}
+
+\input{../output/tables/spain_main_tri.tex}
+
+\clearpage
+\pagebreak
+
+\subsection{Estimates without Fixed Effects}
+\label{app:nofe}
+
+Below, I show results from heterogeneity-in-discontinuity specifications mirroring the main specification, but estimated without fixed effects. This specification matches the heterogeneity-in-discontinuities estimator discussed in \citet{bansak2022}. The results are very similar.
+
+\input{../output/tables/norway_main_nofe.tex}
+
+\input{../output/tables/spain_main_nofe.tex}
+
+\clearpage
+
+\subsection{Estimates conditional on running again}
+
+The results below report the gender gap in the effect of winning again \emph{conditional} on running again. These results should be treated with caution, as the decision to run again is also affected by the treatment. Nonetheless, they can help ease concerns about alternative explanations of the gender gaprelated to differential selection into running again after winning office.
+
+\input{../output/tables/norway_main_conditional.tex}
+
+\input{../output/tables/spain_main_conditional.tex}
+
+\clearpage
+
+
+\pagebreak
+
+\section{RD Robustness Checks: Identification Assumptions}
+
+In this section, I discuss additional checks verifying that there is no sorting around the RD threshold.
+
+\subsection{Continuity Around Threshold}
+\label{app:density_checks}
+
+In order for the regression discontinuity design to identify the causal effect of being elected within each gender, the key assumption is continuity around the threshold -- that is, observations on either side of the threshold are comparable in all respects except for the treatment assignment and the outcome.
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[width = 1 \textwidth]{../output/figures/norway_density.pdf}
+    \caption{Norway}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[width = 1 \textwidth]{../output/figures/spain_density.pdf}
+    \caption{Spain}
+    \end{subfigure}
+    \caption{\textbf{No Discontinuity in Running Variable Density Around Threshold.} The plots show a local linear regression fitted on the density of the running variable.}
+    \label{fig:continuity_assumption}
+\end{figure}
+
+\pagebreak
+\subsection{Continuity in Share Of Female Candidates}
+\label{app:density_covariates}
+
+Similarly, if there is no sorting around the threshold, we should observe no discontinuous jump in the share of female candidates at the threshold. Figure \ref{fig:density_covariates} confirms that this is the case.
+
+\begin{figure}[!htb]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[width = 1 \textwidth]{../output/figures/norway_share_female.pdf}
+    \caption{Norway}
+    \end{subfigure}%
+    \begin{subfigure}[t]{0.48\textwidth}
+    \includegraphics[width = 1 \textwidth]{../output/figures/spain_share_female.pdf}
+    \caption{Spain}
+    \end{subfigure}
+    \caption{\textbf{No Discontinuity in Share Of Female Candidates Around Threshold.} The plots show a local quadratic regression predicting the share of female candidates around the threshold.}
+    \label{fig:density_covariates}
+\end{figure}
+
+\pagebreak
+
+
+\section{Identifying Close Winners and Losers under Proportional Representation}
+\label{app:pr_running}
+
+In the context of PR elections, constructing the running variable and identifying which candidates came close to barely losing or barely winning is not as straightforward as in the archetypal plurality case \citep{lee2001a,lee2008, fiva2016,fiva2018b}. These individual-level measures are different from \citet{blais2009} and \citet{cox2020}, who measure competitiveness at the district level.
+
+
+
+% Make clear that although the overall empirical strategy for the two cases is near identical, the way the running variable is constructed is different -- much in the same way we would construct different running variables for plurality and PR.
+
+\paragraph*{Norway (open-list).} I am constructing the margin of victory (running variable) following \citet{fiva2018a}. Effectively, the strategy identifies bare winners and bare winners within each party as those candidates who have just about gained enough preference votes (or just about missed out on enough preference votes) to be elected (to be defeated).\footnote{One issue with this choice of running variable is that the observations closest to either side of the threshold are likely to have greater population and district magnitude. This follows from the distribution of personal votes across the number of candidates within a list -- very tight margins (e.g. less than a percentage point) are more likely when there are many candidates with similar, small shares of personal votes. Although this issue does not confound the LATE estimate at the threshold (since units do not sort according to treatment status), it does pose a problem of adequate functional form for outcomes such as personal vote shares in $t+1$. See Appendix \ref{app:norway_pv_estimation} for more details.} The as-if random element comes from the distribution of preference votes across candidates of the same list. Following Fiva and Rohr's notation, the margin of victory for candidate $i$ on party list $l$ is defined as:
+
+\begin{equation}
+MV_{il} = \begin{cases}
+\frac{Poll_{il} - Poll_{l}^{S_l + 1}}{PartyVotes_l} \ \text{if elected} \\
+\frac{Poll_{il} - Poll_{l}^{S_l}}{PartyVotes_l} \ \text{if not elected} \\
+\end{cases}
+\end{equation}
+
+where $Poll_{il}$ denotes candidates' personal vote share, $Poll_l^{S_l + 1}$ denotes the vote share of party $l$'s first loser, and $Poll_l^S$ denotes the vote share of party $l$'s last winner. $PartyVotes_l$ is the total number of votes cast for party $l$. In other words, I construct the margin of victory  using the difference in personal votes between candidate $i$ and the vote threshold to winning a seat, normalized by the total number of votes the party obtained.
+
+I construct the running variable in the same way for my supplementary analysis of county-level elections in Poland.
+
+\paragraph*{Spain (closed-list).} I construct the running variable following \cite{folke2014} and calculate a `minimum distance' to winning (or losing) an extra seat for the legislator's party.\footnote{Note, in the original application of this method, the algorithm does not account for electoral thresholds below which parties are excluded from the seat allocation altogether. In the Spanish case, there is a 4\% threshold. However, because of low district magnitudes, the \emph{effective} threshold necessary for parties to clear to win seats, is typically higher than this. Still, I exclude candidates from lists that scored less than 10\% in an election from my sample to ensure that the minimum distance calculated is not affected by the legal threshold.} The as-if random element comes from the discontinuous translation from parties' vote shares to a discrete number of seats, where a small perturbation in the vote share may lead to a different candidate winning the last available seat. I compute the smallest change in the vote share distribution that would cause a party to either lose or win an additional seat. In other words, in each municipal election, I identify the closest winner (the last seat assigned) and the closest loser (the first candidate to miss out on a seat), and calculate the necessary change vote share to flip the last seat from the winner to the loser.
+
+Note that the setup of the running variable in the two countries identifies bare winners and bare losers in different ways.
+%In Norway, the running variable is defined with respect to the within-party distribution of votes: the pair of barely losing and barely winning candidates therefore appears in every party list in every election, unless a party has obtained no seats. In Spain, on the other hand, I can only compare the barely losing candidate of one list with the barely winning candidate of another list (as I am exploiting the as-if random assignment of the last seat between parties). This means that the \emph{dimensions} of the running variable are not comparable to one another.
+However, since my quantity of interest is the LATE subgroup estimate at the threshold, both running variables identify bare winners and bare losers in their respective electoral context. It is typical for different electoral systems to require different operationalisations of the margin of victory. See \citet{eggers2015a} for plurality, \citet{folke2014,fiva2018b,fiva2016} for closed-list PR, \citet{folke2016d,fiva2018a} for open-list PR. Moreover, since I am using party-by-year fixed effects in my specifications, my results in Norway are also not driven by selection of candidates into specific parties.
+
+\pagebreak
+\clearpage
+
+\section{Testing the Gender Gap Across Systems And Countries}
+\label{app:case_extension}
+
+\subsection{Same Country, Different Electoral System: Likely No Gender Gap}
+
+
+\input{../output/tables/norway_national.tex}
+
+Is the gender gap in incumbency advantages restricted to open-list PR, or is it a more general feature of Norwegian elections? Regional and national elections in Norway use a form of closed-list PR in which voters have far less control over individual candidates' placements than in local elections. If the gender gap in incumbency advantages is due to open-list PR, we should not see a similar gap in these higher-order elections. \footnote{It is possible that the gender gap may be attenuated at higher levels of office if only the highest-ability female candidates can overcome repeated gender gaps at lower, open-list rungs of the office pipeline, and party elites select with less bias in higher-level closed-list PR elections.
+     }
+As these higher-level electoral settings (with fewer candidates and fewer marginal seats) leave me underpowered for a heterogeneity-in-discontinuity design, I estimate a difference-in-difference specification among barely elected and barely losing candidates for all national and county elections between 2000 and 2012 using data from \citet{fiva2018c}.\footnote{These estimates may be biased, as candidates away from the threshold may no longer be quasi-randomly assigned to winning or losing their election bid. Still, \citet{fiva2016} employ the same strategy.
+% {\color{red} If we expected women to perform worse, though, wouldn't we think that the bias moves the interaction coefficient away from zero?}
+}
+
+Table \ref{tab:norway_national} reports the estimates from the difference-in-differences specification fitted on national elections. Columns (1) and (2) leverage all barely elected or losing candidates. The gender gap coefficient is positive and significant. Columns (3) and (4) use a bandwidth of 10 percentage points (so barely candidates who win/lose by a large margin, and likely feature different characteristics are no longer included) with virtually unchanged point estimates. Finally, columns (5) and (6) use a bandwidth of 5 percentage points. The gender gap shrinks close to zero. Although it does not turn negative, it comes with large standard errors, rendering this bandwidth estimate difficult to interpret.
+
+In addition, Appendix \ref{app:norway_elex_nat} reports additional results for county-level elections. I observe the same pattern as in national elections, although the point estimates come with even greater uncertainty.
+% Unlike in the national election case, I do not have candidate-level estimates of how marginal their election was, and thus cannot restrict the bandwidth.
+% Instead, I split the borderline sample into left and right-wing parties and find that the results are consistent with my theory.
+
+While these results come with caveats, they remain consistent with the argument that the features of open-list PR, rather than a unique characteristic of Norwegian politics across open- and closed-list elections, drive the negative gender gap found at the local level.
+
+% I examine whether elections at the \emph{regional} level, where voters have far less control over individual list rankings, exhibit a similar gender gap.\footnote{Here, voters can still cast preference votes, but they only become meaningful in very rare cases. In practice, studies of Norwegian politics (e.g. \citet{cirone2020}) treat this tier of elections as closed-list.} As the higher-level electoral setting would leave me underpowered for a heterogeneity-in-discontinuity design, I estimate a difference-in-differences specification among borderline elected and borderline losing candidates for all county elections between 2003 and 2015, and report the results in Table \ref{tab:norway_regional}.\footnote{These estimates may be biased, as candidates away from the threshold may no longer be quasi-randomly assigned to winning or losing their election bid. Although restricting the sample to borderline elected/losing candidates, and restricting the bandwidth helps with this issue, some of the candidates may still plausibly anticipate their rank as certainly losing / winning. Still, \citet{fiva2016} employ the same strategy.
+% % {\color{red} If we expected women to perform worse, though, wouldn't we think that the bias moves the interaction coefficient away from zero?}
+% }
+% The coefficient on the gender gap (columns 1 and 2) is close to zero and statistically insignificant.\footnote{Note that the gender gap grows positive and larger in magnitude for the subsample of candidates in right-wing parties. This is consistent with the suggestion that, if anything, party elites with initial biases against women update positively upon observing them in office.} When splitting the sample by party family, I estimate a greater positive gender gap in right-wing parties, which is consistent with the `social learning' hypothesis.
+
+\clearpage
+\subsubsection{No Evidence of Negative Gender Gap in County-Level Elections}
+\label{app:norway_elex_nat}
+
+\input{../output/tables/norway_regional.tex}
+
+\subsection{Different Country, Same Electoral System: Gender Gap Replicates}
+\label{app:poland}
+
+Alternatively, is the gender gap in Norway's open-list elections idiosyncratic to only this set of elections? If the claim about the effect of electoral systems holds, the negative gender gap ought to replicate in other countries using a similar electoral system. I implement this test by fitting the main heterogeneity-in-discontinuity specification on county-level elections from Poland, which also use open-list PR.\footnote{I restrict my sample to candidates from the two main parties -- Civic Platform (PO), and Law and Order (PiS) -- running in the 2010 and 2014 elections at the county level. I leave out the 2018 elections for two reasons, both of which are likely to affect candidates' career trajectories. First, an electoral reform extended office tenure length from four to five years starting in 2018. Second, Civic Platform merged with several other parties to form a broad opposition alliance.}
+
+The estimates of the gender gap in Polish county-level, open-list elections, albeit less precise, match those from Norwegian municipalities. I report the full set of estimates below. Male candidates enjoy an approximately 10 percentage point higher probability of winning in the next election as a result of getting elected. Women, however, experience an incumbency advantage that is about 6 percentage points smaller. Although, with a much smaller sample, the point estimates are not statistically significant at conventional levels, they are consistent across multiple bandwidth specifications and of a very similar magnitude as those in Norway.
+
+The sample includes all threshold candidates from Poland's major two parties (Civic Platform, Law and Order) at the time of the 2010 election running for election in counties or cities with county powers. These elections are one level up from local elections (where council members are elected using plurality or plurality at-large).
+
+For running again, the results suggest that men enjoy a 10-12 percentage point increase in their probability of running again upon being elected the first time. Here, the gender gap coefficient is positive but highly insignificant and exhibits meaningful variance across the bandwidth choices. For winning again, the incumbency advantage for men is around 13 percentage points. The gender gap is negative and suggests that the incumbency advantage diminishes by about 7 percentage points for women.
+
+\input{../output/tables/poland_main.tex}
+
+
+\pagebreak
+\clearpage
+\section{Additional Statistical Results: Norway}
+
+In this section, I report supplementary analyses and additional results from the Norwegian case.
+
+\subsection{Gender Gap Persists In Restricted Sample}
+\label{app:norway_restricted}
+
+Below, I report the results from Table \ref{tab:norway_main} estimated on the sample restricted to municipality-years in which no personal votes are recorded as missing. There are two reasons why these adjustments should have little effect. First, most records with missing personal votes are outside the sample of barely elected candidates -- candidates from minor parties or in very small municipalities. Second, even if personal vote information were missing, other election details such as list rank and whether the candidate is running, and winning (again) persist. This feature of the data should therefore not affect the main conclusions. Indeed, Table \ref{tab:norway_main_missing} demonstrates that this is the case, although the uncertainty associated with the estimates increases due to a smaller sample size.
+
+\input{../output/tables/norway_main_missing.tex}
+
+\clearpage
+\subsection{Additional Outcomes Robust To Functional Form Choices}
+\label{app:norway_mech_poly}
+
+Below, I replicate Table \ref{tab:norway_by_party_mech} with second-order polynomials. The conclusions are unchanged, except for the gender gap in personal votes. As I discuss in Appendix \ref{app:norway_pv_estimation} below, estimation of the personal vote share can be challenging due to obstacles in operationalisation. When using alternative measures (for example raw personal vote counts) as an outcome, the gender gap in personal votes persists even with second-order polynomials (see Table \ref{tab:norway_pv_check_poly}).
+
+\input{../output/tables/norway_by_party_mech_poly.tex}
+
+
+% \clearpage
+% \subsection{Norway: Voters Or Party?}
+% \label{app:norway_voters_or_party}
+
+% In this section of the Appendix, I provide additional results exploring whether voters or party elites drive the gender gap finding.
+
+% \subsection{Advance to Executive Positions}
+% \label{app:norway_mayor}
+
+% Below, I test whether there is a gender gap in the effect of winning election on advancement to local executive office. Here, I exclude all observations in municipality-years that had directly elected mayors. Note, however, that these estimates do not constitute direct evidence for the claimed mechanism -- Norway has a gender quota for executive offices, meaning that the advantage that women seemingly enjoy may come from the fact that parties are forced to nominate the few elected women they have in order to meet the quota.
+
+% Table \ref{tab:norway_mayor} reports the results on the sample across all parties, and left and right-wing candidates separately. There is a significant effect of being elected on the probability of attaining local executive office. The interaction coefficient is statistically insignificant in all three settings. If anything, women enjoy a \emph{greater} increase in their probability of advancing to local executive office upon winning.
+
+% \input{../output/tables/norway_mayoral.tex}
+
+
+\clearpage
+\subsection{Estimating the Effect on Personal Votes}
+\label{app:norway_pv_estimation}
+
+One additional challenge in the Norwegian case is that larger municipalities are more likely to be close to the threshold, because differences in candidates' personal vote scores are likely to be smaller in districts with large district magnitude and a large number of candidates (e.g., two candidates at the threshold are more likely to be separated by just a small vote share if there are 50 other candidates on the list).
+
+Fortunately, this does not raise concerns with the main results, where outcomes are binary, as we have seen that rates of running again and winning again are relatively constant (or linear) along the running variable (cf. Figure \ref{fig:main_plot}). It does, however, bring about a problem when using outcomes related to personal votes in $t+1$. Candidates closest to the threshold in $t$ are not only more likely to run in larger cities, they are also more likely to have smaller personal vote shares (compared to the total number of votes cast for either the party or in the municipality). While this does not violate the no-sorting condition \emph{across} the threshold, it introduces the threat of non-linear conditional expectation functions on either side of the threshold, which makes estimation of the true LATE much more difficult.
+
+Figures \ref{app:norway_pv_plot1} and \ref{app:norway_pv_plot2} illustrate this problem. Figure \ref{app:norway_pv_plot1} plots the average town population for bins near the threshold. We see that candidates closest to the threshold are more likely to run in larger towns. Fortunately, in the case of raw personal votes (right panel), no significant non-linearities appear: towns near the threshold are larger, but with higher district magnitudes, threshold candidates are also placed further down the list, so their raw vote count does not change all that much. Note that any estimate of the gender gap in the effect of being elected on raw personal votes may be distorted if men and women, on average, receive different vote counts to start with. I find no evidence for this concern in the threshold sample, with the average male candidate receiving 52 personal votes in $t$, and the average female candidate receiving 51.
+
+The story is different for measures of personal vote \emph{shares}. First, there are multiple ways to express the share: either as a share of all votes cast in the town ('Total Votes'), or as a share of all votes cast in the town for the candidate's particular party ('Party Votes', following \citet{fiva2018b}). In both cases, we observe that the outcome decreases severely close to the threshold, likely making estimation of the effect at the threshold more difficult. While an appealing operationalisation of candidates' preference votes (and hence reported in the main text), some of the additional estimates using share-based measures end up being overly noisy due to this issue.
+% Still, with total votes at least some jump at the threshold is still visually discernible, or so it seems at least...
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width = 1 \textwidth]{../output/figures/norway_population.pdf}
+        \caption{Municipality Population}
+        \end{subfigure}%
+        \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width = 1 \textwidth]{../output/figures/norway_raw_pv.pdf}
+        \caption{Raw Personal Votes (t + 1)}
+        \end{subfigure}
+    \caption{Distribution of Municipality Population size and Raw Personal Votes around Threshold}
+    \label{app:norway_pv_plot1}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width = 1 \textwidth]{../output/figures/norway_pv_share.pdf}
+        \caption{Personal Vote / Total Votes (t + 1)}
+        \end{subfigure}%
+        \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width = 1 \textwidth]{../output/figures/norway_pv_share_p.pdf}
+        \caption{Personal Vote / Party Votes (t + 1)}
+        \end{subfigure}
+    \caption{Distribution of Personal Vote Shares Around Threshold}
+    \label{app:norway_pv_plot2}
+\end{figure}
+
+
+% \clearpage
+% \subsubsection{Comparing Distribution of Personal Votes}
+
+% As a simple check, we can plot the distribution of personal vote counts among barely elected candidates by candidate sex, and compare it to the distribution of personal votes in $t + 1$ among the same sample. Figure \ref{fig:pv_distribution} does exactly that. We see that at time $t$, the distribution of preference votes is almost exactly the same for either sex. When looking at the distribution of preference votes that these barely elected candidates received in the next election, we see that the distribution for men shifts slightly to the right compared to the one for women. This is further evidence that men receive a greater increase in personal votes as a result of being elected than female colleagues.
+
+% \begin{figure}[htbp]
+%     \centering
+%     \begin{subfigure}[t]{0.48\textwidth}
+%         \includegraphics[width = 1 \textwidth]{../output/figures/pv_density_pre.pdf}
+%         \caption{at $t$}
+%         \end{subfigure}%
+%         \begin{subfigure}[t]{0.48\textwidth}
+%         \includegraphics[width = 1 \textwidth]{../output/figures/pv_density_post.pdf}
+%         \caption{at $t + 1$}
+%         \end{subfigure}
+%     \caption{Distribution of Personal Votes Among Borderline Elected}
+%     \label{fig:pv_distribution}
+% \end{figure}
+
+\clearpage
+\subsubsection{Robustness to Personal Vote Measurement}
+
+Because of the aforementioned challenges, I estimate the heterogeneity-in-discontinuity specification with all the different outcome operationalisations discussed above. Table \ref{app:norway_pv_estimation} reports the results. The gender gap in the effect of incumbency on personal vote increases across right-wing parties persists across all specifications, although somewhat imprecisely estimated.
+
+\input{../output/tables/norway_pv_check.tex}
+
+\clearpage
+\subsubsection{Robustness to Data Sample}
+\label{app:norway_pv_data}
+
+All analyses on personal vote outcomes so far were restricted to candidates in municipalities where all personal votes are recorded. This is important because we want our denominators for the shares to be right.  Still, for robustness's sake, I also report the estimates for the full sample in Table \ref{tab:norway_pv_check_no_drop}. Note that I can still extend the analyses to these additional observations because the personal vote measure(s) are not missing for the barely elected candidates -- they are merely missing for other (usually minor) candidates running in the municipality.
+
+The estimates for raw personal vote and vote share (relative to total votes) remain consistent, and even gain some precision. The estimates for PV / Party Votes do change, however and are very noisy. This is, as mentioned before, likely due to the estimation challenge with this outcome in particular, where the results are sensitive to even a small degree of noise or measurement error.
+
+\input{../output/tables/norway_pv_check_no_drop.tex}
+
+\clearpage
+\subsubsection{Robustness to Functional Form}
+
+Finally, I also report estimates from specifications with second-order polynomials in Table \ref{tab:norway_pv_check_poly}. The results become a lot noisier; the general pattern of results, along with the estimates' sign and magnitude, still holds up for raw and logged personal vote counts. As discussed before, the specifications using share-based measures as an outcome are much more susceptible to noise -- especially with more demanding specifications such as second-order polynomials -- and should therefore be treated with caution.
+
+\input{../output/tables/norway_pv_check_poly.tex}
+
+\clearpage
+\subsection{Rank Position and Personal Votes}
+\label{app:pv_by_rank}
+
+Below, I plot the average number of personal votes by list rank, grouped by size of the council. We see that pre-vote rank ordering is a strong (though imperfect) predictor of the number of personal votes.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width = .9\textwidth]{../output/figures/norway_pv_by_rank.pdf}
+    \caption{Average number of personal votes, by list rank and council size.}
+    \label{fig:pv_by_rank}
+\end{figure}
+
+\clearpage
+\subsection{Differential Selection and Characteristics Correlated With Gender}
+\label{app:age_rd}
+
+Is the 'gender gap' specific to this characteristic, or do other candidate characteristics also moderate the incumbency advantage? Using the same difference-in-discontinuities specification as in the main results, I check whether there is a meaningful difference in incumbency effects between candidates below and above the median age. Unfortunately, due to data availability, I can only provide these estimates for Norway.
+
+\input{../output/tables/norway_main_by_age.tex}
+
+The results offer no evidence of any age-based gap in incumbency advantages.
+
+Next, I also code candidates on whether they have run as candidate before or not. I use this binary 'experience' variable as an additional moderator for my heterogeneity-in-discontinuity design. As with age, I find no significant differential effect in the incumbency effect based on experience.
+
+\input{../output/tables/norway_by_experience.tex}
+
+\clearpage
+\subsection{Matching Estimates}
+\label{app:matching}
+
+In order to further reduce concerns about differential selection, I want to find the closest possible comparison group to female candidates in the threshold sample. To do so, I match observations on a number of dimensions: candidates' age, experience, the year of the election, their party and the province / county in which they run. I describe the matching procedure in greater detail and report the results below in Table \ref{tab:norway_match}. Importantly, even in the strictest setting -- matching the closest male threshold candidate in terms of age, experience and election year in exactly the same party and county -- my estimates report a meaningful gender gap in the incumbency advantage (albeit with somewhat larger uncertainty).
+
+\paragraph*{Matching Procedure.} For all matching estimates, I retain the set of female threshold candidates within the bandwidth of 0.05 and attempt to find the closest possible male candidate within the same bandwidth that matches this observation. Unlike in the original setting, I cannot rely on automatic bandwidth selection procedures, since the choice of bandwidth also affects the choice of matching pairs (that is, selecting $h$ on the full sample may no longer be MSE-optimal after only retaining matches within $h$).
+
+Throughout, I match without replacement. First, I use simple distance-based (Mahalnobis) matching to find the closest male candidate in terms of running variable, age, experience, and election year (columns 1 and 2). I then restrict possible matches to those within exactly the same party (column 3) and exactly the same province (column 4). Finally, I pick the male candidate with the closest election margin, age, experience and election year who runs in both the same party as well as the same province (column 5).
+
+\paragraph*{Results.} The results suggest that even when comparing the incumbency advantage among men and women with similar profiles, and from the same party and geography, there is a notable gender gap, decreasing the incumbency advantage for women by more than 50\% on average. That said, it is worth emphasising that the matching estimates in columns (4) and (5) are somewhat reduced in magnitude and no longer statistically significant at the conventional significance level of .05. While these estimates reduce the concern that differential selection or candidate attributes other than, yet correlated with gender can explain the contrast in incumbency advantages, a remaining caveat is that my list of candidate covariates is finite and non-exhaustive.
+
+\input{../output/tables/norway_matched.tex}
+
+\clearpage
+\subsection{Heterogeneity By Population Size}
+\label{app:hetero_norway}
+
+In this section, I examine whether cities that are outliers in terms of population drive my results. Although the gender gap is concentrated among cities in the upper tercile (consistent with the name recognition mechanism), I find no evidence that the overall result is sensitive to excluding the largest cities.
+
+\subsubsection{Sensitivity to Outliers}
+\label{app:norway_outliers}
+
+My estimates hold up even when restricting the sample to towns below a population of 20,000. When restricting the sample to towns smaller than 10,000 population, the effect of winning on winning again moves towards zero, but remains negative. In line with Appendix \ref{app:effects_by_tercile}, I interpret this as evidence for name recognition mechanisms in larger municipalities driving the effect.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.8 \textwidth]{../output/figures/norway_muni_robust.pdf}
+    \caption{\textbf{Gender Gap in Incumbency Effect, Norway, By Maximum Municipality Size Included.}}
+    \label{fig:norway_outliers}
+\end{figure}
+
+
+
+\clearpage
+\subsubsection{Effect Magnitude by Population Tercile}
+\label{app:effects_by_tercile}
+
+Next I also estimate the gender gap on subsamples binned by population tercile. The results suggest that the negative effect in the Norwegian case is primarily driven by the upper tercile, i.e. the largest municipalities (but, as the previous appendix section suggests, not just its extreme outliers). This finding is consistent with the argument that name recognition is a key driver of personal vote incumbency advantages in Norway: in smaller municipalities (with shorter lists and fewer candidates), voters may know the handful of elected female candidates better.
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.8 \textwidth]{../output/figures/norway_tercile_robust.pdf}
+    \caption{\textbf{Gender Gap in Incumbency Effect, Norway, By Population Tercile.}}
+    \label{fig:norway_tercile_robust}
+\end{figure}
+
+
+
+\clearpage
+\subsection{Survey Evidence On Voters' Attitudes Towards Female Candidates}
+\label{app:norway_survey}
+
+Next, I examine data from the 2015 Local Election Survey in Norway (conducted by the University of Oslo) to test whether right-wing voters hold more negative views about women in politics. I plot the share of respondents from each party agreeing that ``Women should play a \emph{greater} role in local [municipal] politics.'' The sample analysed included 882 respondents. A majority of respondents in left-leaning parties agrees with this statement, whereas the share of respondents agreeing in right-wing parties hovers around 40\%.
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 1 \textwidth]{../output/figures/norway_survey_support.pdf}
+    \caption{\textbf{Share Respondents Agreeing That Women Should Play Greater Role In Local Politics, By Party.}}
+    \label{fig:norway_survey}
+\end{figure}
+
+
+
+% \subsection{Testing For Heterogeneity Across Population Sizes}
+% \label{app:hetero}
+
+% \subsection{Do Large Cities Drive The Result?}
+
+% In this appendix, I investigate whether the estimated magnitude of the gender gap changes when I restrict my sample size to municipalities of a smaller size. Below, I plot the gender gap coefficients on my two primary outcomes for samples including all (borderline) candidates from municipalities with a population below $x$. In other words, to the right of the $x$-axis, the coefficient is estimated on a sample that includes larger municipalities.
+
+
+\clearpage
+\section{Additional Statistical Results: Spain}
+
+\subsection{Estimates from Difference-in-Differences Specification}
+\label{app:spain_did}
+
+The large number of observations in the Spanish case allows me to compare the outcome mean of candidates extremely close to the threshold without making additional functional form assumptions. To do so, I estimate regressions of the form
+
+\begin{equation}
+    y_{it} = D_{it} + F_{i} + D_{it} \times F_{i} + \phi_{it}(\cdot) + \varepsilon_{it}
+\end{equation}
+
+on all observations within 1 (0.5, 0.25) percentage point(s) of the election margin. $D_{it}$ is a binary indicator whether the candidate $i$ in election $t$ was elected, and $F_i$ is a binary indicator for whether the candidate is recorded as female. As before, I include province and party-by-year fixed effects. The results, in Table \ref{tab:spain_did}, yield estimates that are consistent with those obtained using the heterogeneity-in-discontinuity approach.
+
+
+\input{../output/tables/spain_did.tex}
+
+
+\clearpage
+
+\subsection{Heterogeneity Across Parties}
+\label{app:spain_by_party}
+
+In this section, I report the estimates from the main specification on different subgroups of the Spanish data. If the estimates fitted on left- and right-wing parties differ, the overall gender gap estimate in the main part of the manuscript might mask some important heterogeneities.
+
+First, I fit the main specification on samples from left- and right-wing parties (PSOE and PP) separately. Table \ref{app:spain_by_party} reports the results with running and winning in the next election as outcomes.
+
+There is a notable difference in the gender gap in the effect on running again: female candidates in left-wing parties experience a much smaller increase (relative to men) in their probability of running again in left-wing parties, compared to the same difference in right-wing parties. However, the estimate is also somewhat imprecise.
+
+More importantly, we see little difference in the gender gap in the incumbency effect on winning again between the two party samples. This suggests that there is no party-specific mechanism that drives results (and is consistent with an ideology-agnostic seniority norm), and that would be masked by pooling the sample.
+
+\input{../output/tables/spain_tables_by_party.tex}
+
+
+\clearpage
+\subsection{Heterogeneity Across Quota Rules}
+\label{app:spain_by_quota}
+
+Another worry is that estimating the average pooled over all municipalities masks some important heterogeneity across towns. In 2007, a gender quota started to apply to places with a population of above 5,000: lists in municipalities above this threshold must now feature at least 40\% of candidates from either gender. The requirement was extended to all municipalities above 3,000 pop. in 2011.
+
+In the first subsection (\ref{app:below_quota}), I fit my heterogeneity-in-discontinuity design on municipalities with fewer than 3,000 population only. I continue to find that women's incumbency advantages are no smaller than men's in this subsample of municipalities without a quota.
+
+Of course, these municipalities could be meaningfully different from larger ones where the quota did come into effect.
+
+Ideally, to check whether the mandated quota drives these results, I would run a two-dimensional regression discontinuity with margin of victory and population size as independent assignment variables. This would allow me to check whether the estimates in Equation 2 meaningfully change at the threshold. Unfortunately, even with the amount of data from Spanish municipalities, such a design would be underpowered and consequently suffer from high uncertainty and noisy estimates.
+
+Instead, I report additional results from two types of specifications. First, I fit the typical heterogeneity-in-discontinuity specification on either side of the municipality size threshold (\ref{app:diff-in-disc-quota}). The results offer no clear interpretation because of large uncertainty that comes with these estimates. In addition, I also offer estimates from a difference-in-difference strategy (\ref{app:diff-in-diff-quota}). While less clearly identified, these estimates come with lower variance. Together, I find no strong evidence that the legal gender quota in small municipalities is responsible for the lack of a gender gap in political careers in Spain.
+
+\clearpage
+\subsubsection{Municipalities without Gender Quota Alone}
+\label{app:below_quota}
+
+In this subsection, I report estimates from the Spanish sample of municipalities that never experienced a legally binding quota. We observe that even without a quota, women's incumbency advantages are larger than men's (estimated at an optimal bandwidth).
+
+\input{../output/tables/spain_by_quota_below.tex}
+
+\clearpage
+\subsubsection{Heterogeneity-in-Discontinuity Estimates}
+\label{app:diff-in-disc-quota}
+
+Following the introduction of the 3,000 pop. threshold in 2011, I compare candidates in municipalities between 250 and 3,000 population to candidates in municipalities between 3,001 and 6,000 population.\footnote{I exclude candidates from municipalities that cross the population threshold in between elections in this sample. The choice of bandwidth in this exercise is such that I have enough power to say something meaningful. Estimates that restrict the bandwidth to a narrower slice to municipalities around the 3,000 threshold end up being extremely noisy.} The approach assumes that municipalities within the bandwidth are comparable to one another, and any difference between the samples is driven by the quota alone. That said, the results are also noisier because I have to restrict my sample to post-2007 (i.e., post-quota introduction) observations.
+
+Unsurprisingly, the estimates obtained from the heterogeneity-in-discontinuity specification come with a high degree of uncertainty: there simply are not that many observations close to the municipality threshold \emph{and} the electoral threshold. For each of the two outcomes, the estimates of the gender gap change signs across the two municipality samples (although in different directions). At the same time, the confidence intervals for these estimates also firmly includes null and the respective other point estimate. These results therefore offer little evidence that would suggest that the quota plays an important role in attenuating the gender gap.
+
+\input{../output/tables/spain_by_quota.tex}
+
+\clearpage
+\subsubsection{Difference-in-Differences Estimates}
+\label{app:diff-in-diff-quota}
+
+An alternative approach is to estimate a regression akin to a triple difference-in-differences design using barely losing / barely winning candidates within a selected vote share bandwidth around the threshold of victory. This specification no longer estimates the LATE at the threshold of being elected, but may reduce variance by making fewer functional form assumptions.
+
+In Table \ref{app:spain_by_quota}, I report the estimates with different bandwidth choices for  candidates' margin of victory, keeping the window of municipalities at 1,000 to 5,000. They are estimated somewhat more precisely than the results from the heterogeneity-in-discontinuity specification. For both the simple interaction (capturing the gender gap in cities below the threshold), as well as the double interaction (capturing the \emph{additional} gender gap in cities above the threshold), the estimates are close to and statistically indistinguishable from zero. While these results need to be treated with the appropriate caution, I find no convincing evidence that municipalities with a quota have fundamentally different gender gaps from those without a quota.
+
+\input{../output/tables/spain_by_quota_did.tex}
+
+
+% While I can run the main specification on a restricted sample for quota and non-quota municipalities separately, the results will be a lot noisier due to smaller sample size; in addition, it is not 100\% clear how to interpret the two results side-by-side, since differences might be due to population size or unobserved confounders, rather than the quota. Nonetheless, Appendix X reports these results and finds no significant interaction terms. That said, the interaction coefficients are positive and large(ish) in magnitude for quota municipalities.
+
+% With the above caveat, the results in Table \ref{tab:spain_by_quota} are broadly consistent with the argument that the gender gap in incumbency advantages disappears in closed-list PR settings regardless of a legal gender quota. The incumbency advantage for men on both running again and winning again holds up across both groups of municipalities, and its magnitude is comparable with the estimates from the pooled sample reported earlier. Among quota-implementing municipalities, the interaction coefficient on running again is positive and substantively meaningful (6 percentage point increase in the effect for women) -- however, the estimate comes with a lot of uncertainty, is not statistically significant, and should be treated with caution. Moreover, we do see an increase in the male incumbency advantage on winning again from 9 pp. in non-quota municipalities to 16 pp. in towns with quota enforcement. This jump, however, is not accompanied by a corresponding change in the gender gap coefficient, which remains statistically insignificant and close to null in magnitude (though negative in both subsamples).
+
+While these results do not represent clear-cut evidence, they are nonetheless consistent with the argument that elections using closed-list PR exhibit fewer disadvantages for women's political careers, regardless of whether a gender quota is enforced on lists.\footnote{One potential explanation for the lack of noticeable differences could be that the Spanish gender quota law is not a particularly strict one: the gender gap might be affected by more stringent requirements such as zipped lists.} They are also consistent with \citet{bagues2020}, who find that the introduction of the gender quota in Spanish municipalities has little effect on downstream policy outcomes, such as the size or allocation of municipal public spending.
+
+\clearpage
+\subsection{Heterogeneity By Population Size}
+\label{app:hetero_spain}
+
+In the case of Spain, the results remain consistent throughout the range of upper bounds.
+
+\subsubsection{Sensitivity to Outliers}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.8 \textwidth]{../output/figures/spain_muni_robust.pdf}
+    \caption{\textbf{Gender Gap in Incumbency Effect, Spain, By Maximum Municipality Size Included.}}
+    \label{fig:spain_outliers}
+\end{figure}
+
+
+\subsubsection{Effect Magnitude By Population Tercile}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.8 \textwidth]{../output/figures/spain_tercile_robust.pdf}
+    \caption{\textbf{Gender Gap in Incumbency Effect, Spain, By Population Tercile.}}
+    \label{fig:spain_tercile_robust}
+\end{figure}
+
+
+% \clearpage
+% \section{Additional Statistical Results: Poland}
+% \label{app:poland}
+
+% In this section, I report additional results from the heterogeneity-in-discontinuity specification fitted on open-list PR, county-level elections in Poland.
+
+
+\clearpage
+\section{Descriptive Statistics}
+\label{app:descriptive_statistics}
+
+In this section, I report key summary statistics for both cases.
+
+\input{../output/tables/norway_summary.tex}
+
+\input{../output/tables/spain_summary.tex}
+
+\clearpage
+\section{Full Model Results}
+\label{app:full_models}
+
+In this section, I report results from the main paper including all coefficients in the specification.
+
+\subsection{Norway}
+
+\input{../output/tables/norway_main_full.tex}
+
+\clearpage
+\subsection{Spain}
+
+\input{../output/tables/spain_main_full.tex}
+
+\clearpage
+\subsection{Norway, By Party Group}
+
+\input{../output/tables/norway_by_party_inc_full.tex}
+
+\clearpage
+\subsection{Norway, Mechanisms}
+
+\input{../output/tables/norway_by_party_mech_full.tex}
 
 \end{document}

@@ -1,0 +1,61 @@
+\begin{table}[!h]
+
+\caption{\label{tab:spain_by_quota} \textbf{Difference-in-Discontinuity Estimates For Incumbency Advantage In Spanish Municipalities, By Quota Law.} The estimates for the gender gap are similar in municipalities with and without the gender quota on lists.}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{threeparttable}
+\begin{tabular}[t]{lS[
+              input-symbols=(),
+              table-format=-2.3,
+              table-space-text-pre    = (,
+              table-space-text-post   = ),
+              input-open-uncertainty  =,
+              input-close-uncertainty = ,
+              table-align-text-post = false]S[
+              input-symbols=(),
+              table-format=-2.3,
+              table-space-text-pre    = (,
+              table-space-text-post   = ),
+              input-open-uncertainty  =,
+              input-close-uncertainty = ,
+              table-align-text-post = false]S[
+              input-symbols=(),
+              table-format=-2.3,
+              table-space-text-pre    = (,
+              table-space-text-post   = ),
+              input-open-uncertainty  =,
+              input-close-uncertainty = ,
+              table-align-text-post = false]S[
+              input-symbols=(),
+              table-format=-2.3,
+              table-space-text-pre    = (,
+              table-space-text-post   = ),
+              input-open-uncertainty  =,
+              input-close-uncertainty = ,
+              table-align-text-post = false]}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{2}{c}{Run (t+1)} & \multicolumn{2}{c}{Win (t+1)} \\
+\cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-5}
+  & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)}\\
+\midrule
+Elected & 0.127 & 0.113 & 0.039 & 0.160\\
+ & (0.032) & (0.068) & (0.029) & (0.063)\\
+\addlinespace
+Female & 0.055 & -0.060 & -0.018 & 0.003\\
+ & (0.039) & (0.070) & (0.033) & (0.059)\\
+\addlinespace
+Elected x Female & -0.062 & 0.037 & 0.035 & -0.029\\
+ & (0.056) & (0.102) & (0.050) & (0.095)\\
+\addlinespace \midrule \addlinespace
+Pop & \multicolumn{1}{c}{0-3k} & \multicolumn{1}{c}{3-6k} & \multicolumn{1}{c}{0-3k} & \multicolumn{1}{c}{3-6k}\\
+Bandwidth & 0.03 & 0.031 & 0.029 & 0.029\\
+Outcome Mean & 0.475 & 0.522 & 0.247 & 0.272\\
+N (left) & \multicolumn{1}{c}{2839} & \multicolumn{1}{c}{856} & \multicolumn{1}{c}{2812} & \multicolumn{1}{c}{801}\\
+N (right) & \multicolumn{1}{c}{2947} & \multicolumn{1}{c}{780} & \multicolumn{1}{c}{2912} & \multicolumn{1}{c}{739}\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item All estimates are reported with robust standard errors clustered at the municipality level in parentheses. Each observation is a candidate's election attempt. 'Elected' is an indicator for observations where the candidate obtained a seat in the municipal council. 'Female' is an indicator for observations identified as female. `Elected` times `Female` is the interaction between the two variables. Other coefficients not reported. `Pop' indicates the population of a candidate's municipality at time \$t\$. Regression run on all candidates in elections between 2011 and 2015. Observations in municipalities that crossed the 3,000 population threshold in between elections are excluded.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

@@ -1,0 +1,37 @@
+\begin{table}[!h]
+
+\caption{\label{tab:norway_pv_check_uncond} \textbf{Sensitivity of Results to Different Personal Vote Measures. Unconditional on Running.} The gender gap estimate is consistent across preferred measures.}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{threeparttable}
+\begin{tabular}[t]{lcccccc}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{2}{c}{Raw PV} & \multicolumn{2}{c}{PV / Total Votes} & \multicolumn{2}{c}{PV / Party Votes} \\
+\cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-5} \cmidrule(l{3pt}r{3pt}){6-7}
+  & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(2)} & \multicolumn{1}{c}{(3)} & \multicolumn{1}{c}{(4)} & \multicolumn{1}{c}{(5)} & \multicolumn{1}{c}{(6)}\\
+\midrule
+Elected & 9.659 & 13.241 & 0.002 & 0.002 & 0.008 & 0.009\\
+ & (4.552) & (3.912) & (0.002) & (0.002) & (0.006) & (0.007)\\
+ & {}[0.731, 18.586] & {}[5.571, 20.910] & {}[-0.001, 0.006] & {}[-0.002, 0.005] & {}[-0.003, 0.020] & {}[-0.004, 0.023]\\
+\addlinespace
+Female & -8.481 & 4.262 & 0.000 & 0.000 & 0.003 & -0.015\\
+ & (4.981) & (14.678) & (0.002) & (0.001) & (0.005) & (0.007)\\
+ & {}[-18.249, 1.287] & {}[-24.516, 33.040] & {}[-0.003, 0.003] & {}[-0.003, 0.002] & {}[-0.007, 0.013] & {}[-0.028, -0.001]\\
+\addlinespace
+Elected x Female & 2.567 & -17.546 & -0.003 & 0.000 & -0.015 & -0.001\\
+ & (7.937) & (15.605) & (0.002) & (0.002) & (0.009) & (0.011)\\
+ & {}[-12.999, 18.133] & {}[-48.142, 13.051] & {}[-0.008, 0.002] & {}[-0.004, 0.004] & {}[-0.032, 0.002] & {}[-0.023, 0.020]\\
+\addlinespace \midrule \addlinespace
+\addlinespace
+Parties & \multicolumn{1}{c}{Left} & \multicolumn{1}{c}{Right} & \multicolumn{1}{c}{Left} & \multicolumn{1}{c}{Right} & \multicolumn{1}{c}{Left} & \multicolumn{1}{c}{Right}\\
+Bandwidth & 0.055 & 0.089 & 0.018 & 0.036 & 0.011 & 0.032\\
+Outcome Mean & 35.1 & 40 & 0.0101 & 0.0095 & 0.0347 & 0.0632\\
+N (left) & \multicolumn{1}{c}{1069} & \multicolumn{1}{c}{1748} & \multicolumn{1}{c}{790} & \multicolumn{1}{c}{1304} & \multicolumn{1}{c}{662} & \multicolumn{1}{c}{1238}\\
+N (right) & \multicolumn{1}{c}{1084} & \multicolumn{1}{c}{1778} & \multicolumn{1}{c}{806} & \multicolumn{1}{c}{1327} & \multicolumn{1}{c}{675} & \multicolumn{1}{c}{1258}\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[para]
+\item All estimates are reported with robust standard errors clustered at the municipality level in parentheses. Each observation is a candidate's election attempt. 'Elected' is an indicator for observations where the candidate obtained a seat in the municipal council. 'Female' is an indicator for observations identified as female. `Elected` times `Female` is the interaction between the two variables. Other coefficients not reported. Regression run on all candidates in elections between 2003 and 2015.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

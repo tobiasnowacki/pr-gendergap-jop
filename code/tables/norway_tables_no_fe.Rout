@@ -1,0 +1,388 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(lfe)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+>
+>
+> source("code/utils/run_het_rd.R")
+> options(modelsummary_format_numeric_latex = "plain")
+>
+> # Load data
+> rd_dat <- read.csv("data/no_rd.csv") %>%
++   filter(
++     abs(winmargin_loc) < 0.5, winmargin_loc != 0,
++     year < 2019,
++     pop_loc < 250000,
++     kname_loc != "Oslo"
++   ) %>%
++   filter(inconsistency_candidate_loc == 0) %>%
++   filter(party_loc %in% c("a", "frp", "h", "krf", "sp", "sv", "v"))
+>
+> mean(rd_dat$female)
+[1] 0.3864728
+>
+> run_results <- run_het_rd(
++   rd_dat,
++   "run_again",
++   "winmargin_loc",
++   "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | 0 | 0 | knr_loc"
++ )
+0.05384539 0.1076908 0.0269227>
+> win_results <- run_het_rd(
++   rd_dat,
++   "win_again",
++   "winmargin_loc",
++   "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | 0 | 0 | knr_loc"
++ )
+0.04963569 0.09927137 0.02481784>
+> results_out <- append(run_results, win_results)
+>
+> results_tidy <- map(results_out, ~ .x$out)
+> modelsummary(results_tidy)
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;">  (1) </th>
+   <th style="text-align:center;">   (2) </th>
+   <th style="text-align:center;">   (3) </th>
+   <th style="text-align:center;">   (4) </th>
+   <th style="text-align:center;">   (5) </th>
+   <th style="text-align:center;">   (6) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> (Intercept) </td>
+   <td style="text-align:center;"> 0.571 </td>
+   <td style="text-align:center;"> 0.581 </td>
+   <td style="text-align:center;"> 0.564 </td>
+   <td style="text-align:center;"> 0.220 </td>
+   <td style="text-align:center;"> 0.225 </td>
+   <td style="text-align:center;"> 0.225 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (0.014) </td>
+   <td style="text-align:center;"> (0.012) </td>
+   <td style="text-align:center;"> (0.017) </td>
+   <td style="text-align:center;"> (0.011) </td>
+   <td style="text-align:center;"> (0.010) </td>
+   <td style="text-align:center;"> (0.013) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> winmargin_loc </td>
+   <td style="text-align:center;"> −1.786 </td>
+   <td style="text-align:center;"> −0.977 </td>
+   <td style="text-align:center;"> −2.905 </td>
+   <td style="text-align:center;"> −0.480 </td>
+   <td style="text-align:center;"> 0.061 </td>
+   <td style="text-align:center;"> 0.036 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (0.681) </td>
+   <td style="text-align:center;"> (0.308) </td>
+   <td style="text-align:center;"> (1.363) </td>
+   <td style="text-align:center;"> (0.582) </td>
+   <td style="text-align:center;"> (0.266) </td>
+   <td style="text-align:center;"> (1.332) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> treatTRUE </td>
+   <td style="text-align:center;"> −0.002 </td>
+   <td style="text-align:center;"> −0.014 </td>
+   <td style="text-align:center;"> 0.014 </td>
+   <td style="text-align:center;"> 0.110 </td>
+   <td style="text-align:center;"> 0.104 </td>
+   <td style="text-align:center;"> 0.110 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (0.019) </td>
+   <td style="text-align:center;"> (0.016) </td>
+   <td style="text-align:center;"> (0.023) </td>
+   <td style="text-align:center;"> (0.017) </td>
+   <td style="text-align:center;"> (0.015) </td>
+   <td style="text-align:center;"> (0.021) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:center;"> −0.106 </td>
+   <td style="text-align:center;"> −0.099 </td>
+   <td style="text-align:center;"> −0.092 </td>
+   <td style="text-align:center;"> −0.025 </td>
+   <td style="text-align:center;"> −0.023 </td>
+   <td style="text-align:center;"> −0.022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (0.021) </td>
+   <td style="text-align:center;"> (0.018) </td>
+   <td style="text-align:center;"> (0.026) </td>
+   <td style="text-align:center;"> (0.017) </td>
+   <td style="text-align:center;"> (0.015) </td>
+   <td style="text-align:center;"> (0.021) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> winmargin_loc × treatTRUE </td>
+   <td style="text-align:center;"> 3.162 </td>
+   <td style="text-align:center;"> 2.617 </td>
+   <td style="text-align:center;"> 3.014 </td>
+   <td style="text-align:center;"> 1.057 </td>
+   <td style="text-align:center;"> 0.663 </td>
+   <td style="text-align:center;"> −0.306 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (0.962) </td>
+   <td style="text-align:center;"> (0.428) </td>
+   <td style="text-align:center;"> (2.032) </td>
+   <td style="text-align:center;"> (0.854) </td>
+   <td style="text-align:center;"> (0.416) </td>
+   <td style="text-align:center;"> (2.055) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> winmargin_loc × female </td>
+   <td style="text-align:center;"> −1.587 </td>
+   <td style="text-align:center;"> −0.822 </td>
+   <td style="text-align:center;"> 0.172 </td>
+   <td style="text-align:center;"> 0.657 </td>
+   <td style="text-align:center;"> 0.482 </td>
+   <td style="text-align:center;"> 1.314 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (1.048) </td>
+   <td style="text-align:center;"> (0.473) </td>
+   <td style="text-align:center;"> (2.064) </td>
+   <td style="text-align:center;"> (0.867) </td>
+   <td style="text-align:center;"> (0.396) </td>
+   <td style="text-align:center;"> (1.904) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> treatTRUE × female </td>
+   <td style="text-align:center;"> 0.008 </td>
+   <td style="text-align:center;"> 0.032 </td>
+   <td style="text-align:center;"> −0.031 </td>
+   <td style="text-align:center;"> −0.069 </td>
+   <td style="text-align:center;"> −0.050 </td>
+   <td style="text-align:center;"> −0.099 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (0.033) </td>
+   <td style="text-align:center;"> (0.028) </td>
+   <td style="text-align:center;"> (0.039) </td>
+   <td style="text-align:center;"> (0.028) </td>
+   <td style="text-align:center;"> (0.024) </td>
+   <td style="text-align:center;"> (0.035) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> winmargin_loc × treatTRUE × female </td>
+   <td style="text-align:center;"> 3.681 </td>
+   <td style="text-align:center;"> 0.194 </td>
+   <td style="text-align:center;"> 5.191 </td>
+   <td style="text-align:center;"> 0.945 </td>
+   <td style="text-align:center;"> −0.624 </td>
+   <td style="text-align:center;"> 4.575 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;box-shadow: 0px 1.5px">  </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (1.381) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (0.714) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (2.868) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (1.272) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (0.662) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (3.072) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Num.Obs. </td>
+   <td style="text-align:center;"> 9283 </td>
+   <td style="text-align:center;"> 11119 </td>
+   <td style="text-align:center;"> 7378 </td>
+   <td style="text-align:center;"> 9053 </td>
+   <td style="text-align:center;"> 10917 </td>
+   <td style="text-align:center;"> 7141 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R2 </td>
+   <td style="text-align:center;"> 0.011 </td>
+   <td style="text-align:center;"> 0.013 </td>
+   <td style="text-align:center;"> 0.009 </td>
+   <td style="text-align:center;"> 0.017 </td>
+   <td style="text-align:center;"> 0.020 </td>
+   <td style="text-align:center;"> 0.017 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R2 Adj. </td>
+   <td style="text-align:center;"> 0.010 </td>
+   <td style="text-align:center;"> 0.012 </td>
+   <td style="text-align:center;"> 0.008 </td>
+   <td style="text-align:center;"> 0.016 </td>
+   <td style="text-align:center;"> 0.019 </td>
+   <td style="text-align:center;"> 0.016 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> AIC </td>
+   <td style="text-align:center;"> 13241.3 </td>
+   <td style="text-align:center;"> 15763.4 </td>
+   <td style="text-align:center;"> 10583.1 </td>
+   <td style="text-align:center;"> 10657.1 </td>
+   <td style="text-align:center;"> 12853.1 </td>
+   <td style="text-align:center;"> 8336.1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BIC </td>
+   <td style="text-align:center;"> 13305.6 </td>
+   <td style="text-align:center;"> 15829.3 </td>
+   <td style="text-align:center;"> 10645.3 </td>
+   <td style="text-align:center;"> 10721.1 </td>
+   <td style="text-align:center;"> 12918.8 </td>
+   <td style="text-align:center;"> 8397.9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> RMSE </td>
+   <td style="text-align:center;"> 0.49 </td>
+   <td style="text-align:center;"> 0.49 </td>
+   <td style="text-align:center;"> 0.50 </td>
+   <td style="text-align:center;"> 0.44 </td>
+   <td style="text-align:center;"> 0.44 </td>
+   <td style="text-align:center;"> 0.43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Std.Errors </td>
+   <td style="text-align:center;"> by: knr_loc </td>
+   <td style="text-align:center;"> by: knr_loc </td>
+   <td style="text-align:center;"> by: knr_loc </td>
+   <td style="text-align:center;"> by: knr_loc </td>
+   <td style="text-align:center;"> by: knr_loc </td>
+   <td style="text-align:center;"> by: knr_loc </td>
+  </tr>
+</tbody>
+</table>> n_left <- map_dbl(results_out, ~ .x$n_left)
+> n_right <- map_dbl(results_out, ~ .x$n_right)
+> n_mean <- map_dbl(results_out, ~ .x$out_mean) %>% signif(3)
+> bwv <- map_dbl(results_out, ~ .x$bw) %>% signif(2)
+>
+> # Wrap multicolumn around header (to make it centred with decimal alignment)
+> apply_mc <- function(x) {
++   return(c(paste0("\\multicolumn{1}{c}{", x, "}")))
++ }
+> names(results_tidy) <- paste0("(", 1:length(results_tidy), ")") %>% apply_mc()
+>
+> row_mat <- matrix(
++   ncol = length(n_left) + 1, byrow = TRUE,
++   c(
++     "Bandwidth", bwv,
++     "BW Type", rep(c("Optimal", "2x Opt", "0.5x Opt"), 2) %>% apply_mc(),
++     "Outcome Mean", n_mean,
++     "N (left)", apply_mc(n_left),
++     "N (right)", apply_mc(n_right)
++   )
++ ) %>%
++   as.data.frame()
+>
+> clist <- c(
++   "treatTRUE" = "Elected",
++   "female" = "Female",
++   "treatTRUE:female" = "Elected x Female"
++ )
+>
+>
+> tex_out <- modelsummary(results_tidy,
++   coef_map = clist,
++   gof_omit = ".*",
++   caption = "\\label{tab:norway_main_nofe} \\textbf{Heterogeneity-in-DiscontinuityEstimates For Incumbency Advantage In Norwegian Municipalities, without fixed effects.} Women Face Diminished Incumbency Effect On Winning Again.",
++   booktabs = TRUE,
++   add_rows = row_mat,
++   kable_format = "latex",
++   output = "latex"
++ ) %>%
++   kable_styling(
++     latex_options="hold_position",
++     # latex_options="scale_down"
++     font_size = 9
++   ) %>%
++   footnote(
++     threeparttable = TRUE,
++     fixed_small_size = FALSE,
++     footnote_as_chunk = TRUE,
++     general_title = "",
++     general = c("All estimates are reported with robust standard errors clustered at the municipality level in parentheses. Each observation is a candidate's election attempt. 'Elected' is an indicator for observations where the candidate obtained a seat in the municipal council. 'Female' is an indicator for observations identified as female. `Elected` times `Female` is the interaction between the two variables. Other coefficients not reported. Regression run on all candidates in elections between 2003 and 2015.")
++   ) %>%
++   add_header_above(c(" " = 1, "Run (t + 1)" = 3, "Win (t + 1)" = 3)) %>%
++   row_spec(c(2, 4), extra_latex_after = "\\addlinespace") %>%
++   row_spec(6, extra_latex_after = "\\addlinespace \\midrule \\addlinespace") %>%
++   column_spec(2:7, latex_column_spec = "S[
++               input-symbols=(),
++               table-format=-1.3,
++               table-space-text-pre    = (,
++               table-space-text-post   = ),
++               input-open-uncertainty  =,
++               input-close-uncertainty = ,
++               table-align-text-post = false]")
+>
+> tex_out <- tex_out %>%
++   gsub(pattern = "\\textbackslash{}", replacement = "\\", fixed = TRUE) %>%
++   gsub(pattern = "\\{", replacement = "{", fixed = TRUE) %>%
++   gsub(pattern = "\\}", replacement = "}", fixed = TRUE)
+>
+> cat(tex_out, file = "output/tables/norway_main_nofe.tex")
+>
+> proc.time()
+   user  system elapsed
+  7.174   0.558   8.165

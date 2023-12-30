@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2019)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: pr_gendergap.aux
+The style file: apsr_fs.bst.bst
+Database file #1: Spain_Careers.bib
+Warning--empty note in anzia2019
+Warning--empty note in ashworth2021
+Warning--empty note in bansak2022
+Warning--empty note in brown2019
+Warning--empty note in cipullo2021
+Warning--empty note in eymmoud2017
+Warning--empty note in fiva2020
+Warning--empty note in marshall2021
+Warning--there's a number but no volume in profeta2022
+You've used 76 entries,
+            2871 wiz_defined-function locations,
+            1063 strings with 17520 characters,
+and the built_in function-call counts, 372518 in all, are:
+= -- 61763
+> -- 4395
+< -- 1
++ -- 29287
+- -- 1386
+* -- 32143
+:= -- 73611
+add.period$ -- 306
+call.type$ -- 76
+change.case$ -- 989
+chr.to.int$ -- 75
+cite$ -- 85
+duplicate$ -- 1064
+empty$ -- 2429
+format.name$ -- 1452
+if$ -- 67193
+int.to.chr$ -- 6
+int.to.str$ -- 0
+missing$ -- 69
+newline$ -- 311
+num.names$ -- 888
+pop$ -- 168
+preamble$ -- 1
+purify$ -- 1140
+quote$ -- 0
+skip$ -- 899
+stack$ -- 0
+substring$ -- 88377
+swap$ -- 173
+text.length$ -- 1065
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 300
+warning$ -- 9
+while$ -- 1823
+width$ -- 0
+write$ -- 1034
+(There were 9 warnings)

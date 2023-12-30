@@ -1,0 +1,77 @@
+\babel@toc {UKenglish}{}
+\babel@toc {UKenglish}{}
+\contentsline {part}{\hspace {1em}}{1}{part.1}% 
+\contentsline {xpart}{}{1}{part.1}% 
+\contentsline {section}{\numberline {1}Electoral Systems and the Gender Gap in Political Careers}{5}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}PR Boosts Number of Women Running (and Winning)}{5}{subsection.1.1}% 
+\contentsline {subsection}{\numberline {1.2}When Does PR Create Similar Incumbency Advantages for Men and Women?}{7}{subsection.1.2}% 
+\contentsline {section}{\numberline {2}Data and Design}{13}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Cases and Data}{13}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Empirical Strategy}{16}{subsection.2.2}% 
+\contentsline {subsubsection}{\numberline {2.2.1}Defining the Gender Gap in the Incumbency Advantage}{16}{subsubsection.2.2.1}% 
+\contentsline {subsubsection}{\numberline {2.2.2}Estimating the Gender Gap Using A Heterogeneity-in-Discontinuity Design}{17}{subsubsection.2.2.2}% 
+\contentsline {subsubsection}{\numberline {2.2.3}Identifying Bare Winners And Bare Losers In Proportional Representation}{19}{subsubsection.2.2.3}% 
+\contentsline {section}{\numberline {3}Main Results: Negative Gender Gap In Open-List, But Not Closed-List PR}{19}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Norway (Open-List PR)}{21}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Spain (Closed-List PR)}{22}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Countries' Idiosyncracies Unlikely To Drive Gender Gap Difference}{23}{subsection.3.3}% 
+\contentsline {subsection}{\numberline {3.4}Differential Selection Of Candidates Into Sample Unlikely To Drive Gender Gap}{24}{subsection.3.4}% 
+\contentsline {section}{\numberline {4}Mechanisms Behind the Gender Gap in Open-List PR}{25}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}Women's Disadvantage Concentrated in Right-Wing Parties}{26}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}Voters, Rather Than Party, May Drive Gender Gap}{27}{subsection.4.2}% 
+\contentsline {section}{\numberline {5}Conclusion}{30}{section.5}% 
+\contentsline {section}{Appendix}{1}{section*.15}% 
+\contentsline {part}{\hspace {1em}Online Appendix}{1}{part.2}% 
+\contentsline {xpart}{Online Appendix}{1}{part.2}% 
+\contentsline {section}{\numberline {A}Illustrative Simulation of Open-List Theory}{3}{appendix.A}% 
+\contentsline {subsection}{\numberline {A.1}Setup}{3}{subsection.A.1}% 
+\contentsline {subsection}{\numberline {A.2}Simulation}{4}{subsection.A.2}% 
+\contentsline {subsection}{\numberline {A.3}Results}{6}{subsection.A.3}% 
+\contentsline {section}{\numberline {B}RD Robustness Checks: Main Results}{7}{appendix.B}% 
+\contentsline {subsection}{\numberline {B.1}Functional Form}{7}{subsection.B.1}% 
+\contentsline {subsubsection}{\numberline {B.1.1}Norway}{7}{subsubsection.B.1.1}% 
+\contentsline {subsubsection}{\numberline {B.1.2}Spain}{8}{subsubsection.B.1.2}% 
+\contentsline {subsection}{\numberline {B.2}Bandwidth Sensitivity}{9}{subsection.B.2}% 
+\contentsline {subsubsection}{\numberline {B.2.1}Norway}{9}{subsubsection.B.2.1}% 
+\contentsline {subsubsection}{\numberline {B.2.2}Spain}{10}{subsubsection.B.2.2}% 
+\contentsline {subsection}{\numberline {B.3}Kernel Choice}{11}{subsection.B.3}% 
+\contentsline {subsection}{\numberline {B.4}Estimates without Fixed Effects}{13}{subsection.B.4}% 
+\contentsline {subsection}{\numberline {B.5}Estimates conditional on running again}{15}{subsection.B.5}% 
+\contentsline {section}{\numberline {C}RD Robustness Checks: Identification Assumptions}{17}{appendix.C}% 
+\contentsline {subsection}{\numberline {C.1}Continuity Around Threshold}{17}{subsection.C.1}% 
+\contentsline {subsection}{\numberline {C.2}Continuity in Share Of Female Candidates}{18}{subsection.C.2}% 
+\contentsline {section}{\numberline {D}Identifying Close Winners and Losers under Proportional Representation}{19}{appendix.D}% 
+\contentsline {section}{\numberline {E}Testing the Gender Gap Across Systems And Countries}{21}{appendix.E}% 
+\contentsline {subsection}{\numberline {E.1}Same Country, Different Electoral System: Likely No Gender Gap}{21}{subsection.E.1}% 
+\contentsline {subsubsection}{\numberline {E.1.1}No Evidence of Negative Gender Gap in County-Level Elections}{23}{subsubsection.E.1.1}% 
+\contentsline {subsection}{\numberline {E.2}Different Country, Same Electoral System: Gender Gap Replicates}{23}{subsection.E.2}% 
+\contentsline {section}{\numberline {F}Additional Statistical Results: Norway}{26}{appendix.F}% 
+\contentsline {subsection}{\numberline {F.1}Gender Gap Persists In Restricted Sample}{26}{subsection.F.1}% 
+\contentsline {subsection}{\numberline {F.2}Additional Outcomes Robust To Functional Form Choices}{27}{subsection.F.2}% 
+\contentsline {subsection}{\numberline {F.3}Estimating the Effect on Personal Votes}{28}{subsection.F.3}% 
+\contentsline {subsubsection}{\numberline {F.3.1}Robustness to Personal Vote Measurement}{30}{subsubsection.F.3.1}% 
+\contentsline {subsubsection}{\numberline {F.3.2}Robustness to Data Sample}{31}{subsubsection.F.3.2}% 
+\contentsline {subsubsection}{\numberline {F.3.3}Robustness to Functional Form}{32}{subsubsection.F.3.3}% 
+\contentsline {subsection}{\numberline {F.4}Rank Position and Personal Votes}{33}{subsection.F.4}% 
+\contentsline {subsection}{\numberline {F.5}Differential Selection and Characteristics Correlated With Gender}{34}{subsection.F.5}% 
+\contentsline {subsection}{\numberline {F.6}Matching Estimates}{36}{subsection.F.6}% 
+\contentsline {subsection}{\numberline {F.7}Heterogeneity By Population Size}{38}{subsection.F.7}% 
+\contentsline {subsubsection}{\numberline {F.7.1}Sensitivity to Outliers}{38}{subsubsection.F.7.1}% 
+\contentsline {subsubsection}{\numberline {F.7.2}Effect Magnitude by Population Tercile}{39}{subsubsection.F.7.2}% 
+\contentsline {subsection}{\numberline {F.8}Survey Evidence On Voters' Attitudes Towards Female Candidates}{40}{subsection.F.8}% 
+\contentsline {section}{\numberline {G}Additional Statistical Results: Spain}{41}{appendix.G}% 
+\contentsline {subsection}{\numberline {G.1}Estimates from Difference-in-Differences Specification}{41}{subsection.G.1}% 
+\contentsline {subsection}{\numberline {G.2}Heterogeneity Across Parties}{42}{subsection.G.2}% 
+\contentsline {subsection}{\numberline {G.3}Heterogeneity Across Quota Rules}{43}{subsection.G.3}% 
+\contentsline {subsubsection}{\numberline {G.3.1}Municipalities without Gender Quota Alone}{44}{subsubsection.G.3.1}% 
+\contentsline {subsubsection}{\numberline {G.3.2}Heterogeneity-in-Discontinuity Estimates}{45}{subsubsection.G.3.2}% 
+\contentsline {subsubsection}{\numberline {G.3.3}Difference-in-Differences Estimates}{47}{subsubsection.G.3.3}% 
+\contentsline {subsection}{\numberline {G.4}Heterogeneity By Population Size}{49}{subsection.G.4}% 
+\contentsline {subsubsection}{\numberline {G.4.1}Sensitivity to Outliers}{49}{subsubsection.G.4.1}% 
+\contentsline {subsubsection}{\numberline {G.4.2}Effect Magnitude By Population Tercile}{49}{subsubsection.G.4.2}% 
+\contentsline {section}{\numberline {H}Descriptive Statistics}{50}{appendix.H}% 
+\contentsline {section}{\numberline {I}Full Model Results}{52}{appendix.I}% 
+\contentsline {subsection}{\numberline {I.1}Norway}{52}{subsection.I.1}% 
+\contentsline {subsection}{\numberline {I.2}Spain}{53}{subsection.I.2}% 
+\contentsline {subsection}{\numberline {I.3}Norway, By Party Group}{54}{subsection.I.3}% 
+\contentsline {subsection}{\numberline {I.4}Norway, Mechanisms}{55}{subsection.I.4}% 

@@ -1,0 +1,326 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(lfe)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+> source("code/utils/het_by_sex_plot.R")
+> options("modelsummary_format_numeric_latex" = "plain")
+> 
+> right = c("h", "frp", "krf", "v")
+> 
+> # Load data in
+> # Load data
+> rd_dat <- read.csv("data/no_rd.csv") %>%
++   filter(
++     abs(winmargin_loc) < 0.05,
++     winmargin_loc != 0,
++     year < 2019,
++     pop_loc < 250000,
++     kname_loc != "Oslo"
++   ) %>%
++   filter(inconsistency_candidate_loc == 0) %>%
++   mutate(
++     elected = as.numeric(elected_loc),
++     run_again = as.numeric(run_again),
++     win_again = as.numeric(win_again)
++   ) %>%
++   dplyr::select(
++     "Share Female" = female,
++     "Elected" = elected,
++     Population = pop_loc,
++     `Total Seats` = sizeofcouncil_loc,
++     `Running (t+1)` = run_again,
++     `Winning (t+1)` = win_again
++   )
+> 
+> out <- datasummary(`Share Female` + Elected + Population + `Total Seats` + `Running (t+1)` + `Winning (t+1)` ~ (Mean) + (SD) + (Min) + (Max),
++   data = rd_dat,
++   title = "Summary Statistics For Borderline Sample, Norway.",
++   output = "output/tables/norway_summary.tex"
++ )
+> 
+> # Male-Female Balance in Norway
+> rd_dat <- read.csv("data/no_rd.csv") %>%
++   filter(
++     abs(winmargin_loc) < 0.05,
++     winmargin_loc != 0,
++     year < 2019,
++     pop_loc < 250000,
++     kname_loc != "Oslo"
++   ) %>%
++   filter(inconsistency_candidate_loc == 0) %>%
++   mutate(
++     female = ifelse(female == 1, "Female", "Male"),
++     elected = as.numeric(elected_loc),
++     run_again = as.numeric(run_again),
++     win_again = as.numeric(win_again)
++   ) %>%
++   dplyr::select(winmargin_loc, elected, female, pop_loc, age, sizeofcouncil_loc, run_again, win_again, no_run, candwin_loc,  personalvotes_total_loc, rank_loc, rankresult_loc, preadvantage_loc) %>%
++   rename(
++     Margin = winmargin_loc,
++     Elected = elected,
++     Population = pop_loc, `Council size` = sizeofcouncil_loc, `Run (t + 1)` = run_again, `Win (t + 1)` = win_again, `Times Running` = no_run, `Times Winning` = candwin_loc, Age = age, `Personal Votes` = personalvotes_total_loc, `List rank` = rank_loc, `Final list rank` = rankresult_loc, `Pre-Advantage` = preadvantage_loc
++   )
+> 
+> # Bandwidth of h = 0.1
+> datasummary_balance(~female,
++   rd_dat,
++   caption = "Gender Balance Across Covariates",
++   fmt = "%.2f"
++   # output = "output/tables/norway_female_balance.tex"
++ )
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Gender Balance Across Covariates</caption>
+ <thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Female (N=3670)</div></th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Male (N=5653)</div></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="2"></th>
+</tr>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> Mean </th>
+   <th style="text-align:right;"> Std. Dev. </th>
+   <th style="text-align:right;"> Mean </th>
+   <th style="text-align:right;"> Std. Dev. </th>
+   <th style="text-align:right;"> Diff. in Means </th>
+   <th style="text-align:right;"> Std. Error </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Margin </td>
+   <td style="text-align:right;"> -0.00 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.00 </td>
+   <td style="text-align:right;"> 0.00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Elected </td>
+   <td style="text-align:right;"> 0.49 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.01 </td>
+   <td style="text-align:right;"> 0.01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Population </td>
+   <td style="text-align:right;"> 13117.49 </td>
+   <td style="text-align:right;"> 21109.37 </td>
+   <td style="text-align:right;"> 13343.22 </td>
+   <td style="text-align:right;"> 22425.31 </td>
+   <td style="text-align:right;"> 225.73 </td>
+   <td style="text-align:right;"> 458.67 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Age </td>
+   <td style="text-align:right;"> 43.89 </td>
+   <td style="text-align:right;"> 12.59 </td>
+   <td style="text-align:right;"> 47.97 </td>
+   <td style="text-align:right;"> 13.13 </td>
+   <td style="text-align:right;"> 4.08 </td>
+   <td style="text-align:right;"> 0.27 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Council size </td>
+   <td style="text-align:right;"> 28.06 </td>
+   <td style="text-align:right;"> 10.54 </td>
+   <td style="text-align:right;"> 28.28 </td>
+   <td style="text-align:right;"> 10.58 </td>
+   <td style="text-align:right;"> 0.21 </td>
+   <td style="text-align:right;"> 0.22 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Run (t + 1) </td>
+   <td style="text-align:right;"> 0.52 </td>
+   <td style="text-align:right;"> 0.50 </td>
+   <td style="text-align:right;"> 0.59 </td>
+   <td style="text-align:right;"> 0.49 </td>
+   <td style="text-align:right;"> 0.08 </td>
+   <td style="text-align:right;"> 0.01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Win (t + 1) </td>
+   <td style="text-align:right;"> 0.23 </td>
+   <td style="text-align:right;"> 0.42 </td>
+   <td style="text-align:right;"> 0.28 </td>
+   <td style="text-align:right;"> 0.45 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Times Running </td>
+   <td style="text-align:right;"> 1.50 </td>
+   <td style="text-align:right;"> 0.76 </td>
+   <td style="text-align:right;"> 1.64 </td>
+   <td style="text-align:right;"> 0.86 </td>
+   <td style="text-align:right;"> 0.14 </td>
+   <td style="text-align:right;"> 0.02 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Times Winning </td>
+   <td style="text-align:right;"> 0.95 </td>
+   <td style="text-align:right;"> 0.93 </td>
+   <td style="text-align:right;"> 1.14 </td>
+   <td style="text-align:right;"> 1.07 </td>
+   <td style="text-align:right;"> 0.18 </td>
+   <td style="text-align:right;"> 0.02 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Personal Votes </td>
+   <td style="text-align:right;"> 48.62 </td>
+   <td style="text-align:right;"> 36.97 </td>
+   <td style="text-align:right;"> 50.32 </td>
+   <td style="text-align:right;"> 39.60 </td>
+   <td style="text-align:right;"> 1.70 </td>
+   <td style="text-align:right;"> 0.81 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> List rank </td>
+   <td style="text-align:right;"> 7.77 </td>
+   <td style="text-align:right;"> 6.39 </td>
+   <td style="text-align:right;"> 9.09 </td>
+   <td style="text-align:right;"> 7.57 </td>
+   <td style="text-align:right;"> 1.32 </td>
+   <td style="text-align:right;"> 0.15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Final list rank </td>
+   <td style="text-align:right;"> 6.43 </td>
+   <td style="text-align:right;"> 3.93 </td>
+   <td style="text-align:right;"> 6.25 </td>
+   <td style="text-align:right;"> 3.68 </td>
+   <td style="text-align:right;"> -0.18 </td>
+   <td style="text-align:right;"> 0.08 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pre-Advantage </td>
+   <td style="text-align:right;"> 0.19 </td>
+   <td style="text-align:right;"> 0.39 </td>
+   <td style="text-align:right;"> 0.16 </td>
+   <td style="text-align:right;"> 0.37 </td>
+   <td style="text-align:right;"> -0.03 </td>
+   <td style="text-align:right;"> 0.01 </td>
+  </tr>
+</tbody>
+</table>> 
+> Diff <- function(x) mean(x[rd_dat$female == "Female"]) - mean(x[rd_dat$female == "Male"])
+> 
+> DiffSE <- function(x) t.test(x[rd_dat$female == "Female"], x[rd_dat$female == "Male"])$stderr %>% sprintf("(%.2f)", .)
+> 
+> DiffPval <- function(x) t.test(x[rd_dat$female == "Female"], x[rd_dat$female == "Male"])$p.val %>% sprintf("[%.3f]", .)
+> 
+> datasummary(
++   All(rd_dat) ~ female * (Mean + SD * Arguments(fmt = "(%.2f)")) + (Difference = Diff) + (`Diff SE` = DiffSE) + (`p-val` = DiffPval),
++   data = rd_dat, output = "latex"
++ ) %>%
++   row_spec(5, extra_latex_after = "\\cmidrule(lr){2-8}") %>%
++   column_spec(c(2, 4, 6), bold = TRUE) %>%
++   column_spec(6:8, background = "#eeeeee") %>%
++   save_kable(file = "output/tables/norway_female_balance_beamer.tex")
+> 
+> 
+> # Do this for the whole election sample
+> rd_all <- read.csv("data/no_all.csv") %>%
++   filter(
++     winmargin_loc != 0,
++     year < 2019,
++     pop_loc < 250000,
++     kname_loc != "Oslo"
++   ) %>%
++   filter(inconsistency_candidate_loc == 0) %>%
++   mutate(
++     female = ifelse(female == 1, "Female", "Male"),
++     elected = as.numeric(elected_loc),
++     run_again = as.numeric(run_again),
++     win_again = as.numeric(win_again)
++   ) %>%
++   dplyr::select(winmargin_loc, elected, female, pop_loc, age, sizeofcouncil_loc, run_again, win_again, no_run, candwin_loc,  personalvotes_total_loc, rank_loc, rankresult_loc, preadvantage_loc) %>%
++   rename(
++     Margin = winmargin_loc,
++     Elected = elected,
++     Population = pop_loc, `Council size` = sizeofcouncil_loc, `Run (t + 1)` = run_again, `Win (t + 1)` = win_again, `Times Running` = no_run, `Times Winning` = candwin_loc, Age = age, `Personal Votes` = personalvotes_total_loc, `List rank` = rank_loc, `Final list rank` = rankresult_loc, `Pre-Advantage` = preadvantage_loc
++   )
+> 
+> rd_all %>% filter(Elected == TRUE) %>% group_by(female) %>% summarise(mean(`Win (t + 1)`))
+# A tibble: 2 × 2
+  female `mean(\`Win (t + 1)\`)`
+  <chr>                    <dbl>
+1 Female                   0.382
+2 Male                     0.466
+> 
+> # Recast functions in terms of whole sample
+> Diff <- function(x) mean(x[rd_all$female == "Female"]) - mean(x[rd_all$female == "Male"])
+> 
+> DiffSE <- function(x) t.test(x[rd_all$female == "Female"], x[rd_all$female == "Male"])$stderr %>% sprintf("(%.2f)", .)
+> 
+> DiffPval <- function(x) t.test(x[rd_all$female == "Female"], x[rd_all$female == "Male"])$p.val %>% sprintf("[%.3f]", .)
+> 
+> datasummary(
++   All(rd_all) ~ female * (Mean + SD * Arguments(fmt = "(%.2f)")) + (Difference = Diff) + (`Diff SE` = DiffSE) + (`p-val` = DiffPval),
++   data = rd_all, output = "latex"
++ ) %>%
++   row_spec(5, extra_latex_after = "\\cmidrule(lr){2-8}") %>%
++   column_spec(c(2, 4, 6), bold = TRUE) %>%
++   column_spec(6:8, background = "#eeeeee") %>%
++   save_kable(file = "output/tables/norway_female_balance_beamer_full.tex")
+> 
+> proc.time()
+   user  system elapsed 
+ 28.866   2.341  33.052 

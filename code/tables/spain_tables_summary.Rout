@@ -1,0 +1,93 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(lfe)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+> source("code/utils/het_by_sex_plot.R")
+> options(modelsummary_format_numeric_latex = "plain")
+> 
+> # Load data in
+> rd_dat <- read.csv("data/spain_rd_ready.csv",
++        row.names = NULL
++ ) %>%
++        filter(year < 2019) %>%
++        filter(pop < 250000) %>%
++        filter(abs(winmargin_loc) < 0.05) %>%
++        filter(major_party == TRUE) %>%
++        filter(winmargin_loc != 0) %>%
++        mutate(
++               elected = as.numeric(elected == "S"),
++               run_again = as.numeric(run_again),
++               win_again = as.numeric(win_again)
++        ) %>%
++        dplyr::select(
++               "Share Female" = female,
++               "Elected" = elected,
++               Population = pop,
++               `Total Seats` = total_seats,
++               `Running (t+1)` = run_again,
++               `Winning (t+1)` = win_again
++        )
+> 
+> out <- datasummary(
++        `Share Female` + Elected + Population + `Total Seats` + `Running (t+1)` + `Winning (t+1)` ~ (Mean <- mean) + (SD <- sd) + (Min <- min) + (Max <- max),
++        data = rd_dat,
++        title = "Summary Statistics For Borderline Sample, Spain.",
++        output = "output/tables/spain_summary.tex"
++ )
+> 
+> proc.time()
+   user  system elapsed 
+  8.036   0.734  10.804 

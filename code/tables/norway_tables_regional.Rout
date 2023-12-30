@@ -1,0 +1,357 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(lfe)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> library(fixest)
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+> options("modelsummary_format_numeric_latex" = "plain")
+> 
+> source("code/utils/run_het_rd.R")
+> 
+> dat <- read_csv("data/norway_reg.csv")
+Rows: 1701 Columns: 110
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (17): candidatename_std, candidatename_nat, firstname, lastname, kname_l...
+dbl (90): year, pid_lcd, pid_nat, birthyear, age, female, running_loc, runni...
+lgl  (3): leveling_seat_reg, ever_top, ever_top_three
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> 
+> dat_left <- dat %>%
++   filter(party_reg %in% c("a", "sv"))
+> 
+> dat_right <- dat %>%
++   filter(party_reg %in% c("h", "frp", "krf", "v"))
+> 
+> # Get means
+> m1 <- mean(dat$win_again, na.rm = TRUE)
+> m2 <- mean(dat_left$win_again)
+> m3 <- mean(dat_right$win_again)
+> 
+> # Whole sample
+> mod1 <- feols(win_again ~ elected_reg + female + elected_reg:female | year + cnr_reg, dat, cluster = ~cnr_reg)
+NOTE: 1 observation removed because of NA values (LHS: 1).
+> mod2 <- feols(win_again ~ elected_reg + female + elected_reg:female | year + cnr_reg + party_reg^year, dat, cluster = ~cnr_reg)
+NOTE: 1 observation removed because of NA values (LHS: 1).
+> 
+> # Left parties
+> mod3 <- feols(win_again ~ elected_reg + female + elected_reg:female | year + cnr_reg, dat_left, cluster = ~cnr_reg)
+> mod4 <- feols(win_again ~ elected_reg + female + elected_reg:female | year + cnr_reg + party_reg^year, dat_left, cluster = ~cnr_reg)
+> 
+> # Right parties
+> mod5 <- feols(win_again ~ elected_reg + female + elected_reg:female | year + cnr_reg, dat_right, cluster = ~cnr_reg)
+> mod6 <- feols(win_again ~ elected_reg + female + elected_reg:female | year + cnr_reg + party_reg^year, dat_right, cluster = ~cnr_reg)
+> 
+> library(kableExtra)
+> 
+> results <- list(mod1, mod2, mod3, mod4, mod5, mod6)
+> 
+> results_tidy <- map(results, ~ .x$out)
+> library(modelsummary)
+> modelsummary(results)
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;">  (1) </th>
+   <th style="text-align:center;">   (2) </th>
+   <th style="text-align:center;">   (3) </th>
+   <th style="text-align:center;">   (4) </th>
+   <th style="text-align:center;">   (5) </th>
+   <th style="text-align:center;">   (6) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> elected_reg </td>
+   <td style="text-align:center;"> 0.183 </td>
+   <td style="text-align:center;"> 0.164 </td>
+   <td style="text-align:center;"> 0.106 </td>
+   <td style="text-align:center;"> 0.121 </td>
+   <td style="text-align:center;"> 0.153 </td>
+   <td style="text-align:center;"> 0.156 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (0.036) </td>
+   <td style="text-align:center;"> (0.039) </td>
+   <td style="text-align:center;"> (0.052) </td>
+   <td style="text-align:center;"> (0.055) </td>
+   <td style="text-align:center;"> (0.059) </td>
+   <td style="text-align:center;"> (0.059) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> female </td>
+   <td style="text-align:center;"> −0.051 </td>
+   <td style="text-align:center;"> −0.056 </td>
+   <td style="text-align:center;"> −0.056 </td>
+   <td style="text-align:center;"> −0.032 </td>
+   <td style="text-align:center;"> −0.091 </td>
+   <td style="text-align:center;"> −0.092 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:center;"> (0.032) </td>
+   <td style="text-align:center;"> (0.036) </td>
+   <td style="text-align:center;"> (0.068) </td>
+   <td style="text-align:center;"> (0.072) </td>
+   <td style="text-align:center;"> (0.050) </td>
+   <td style="text-align:center;"> (0.050) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> elected_reg × female </td>
+   <td style="text-align:center;"> 0.015 </td>
+   <td style="text-align:center;"> 0.015 </td>
+   <td style="text-align:center;"> 0.019 </td>
+   <td style="text-align:center;"> −0.007 </td>
+   <td style="text-align:center;"> 0.064 </td>
+   <td style="text-align:center;"> 0.061 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;box-shadow: 0px 1.5px">  </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (0.051) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (0.054) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (0.076) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (0.079) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (0.075) </td>
+   <td style="text-align:center;box-shadow: 0px 1.5px"> (0.076) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Num.Obs. </td>
+   <td style="text-align:center;"> 1700 </td>
+   <td style="text-align:center;"> 1700 </td>
+   <td style="text-align:center;"> 412 </td>
+   <td style="text-align:center;"> 412 </td>
+   <td style="text-align:center;"> 825 </td>
+   <td style="text-align:center;"> 825 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R2 </td>
+   <td style="text-align:center;"> 0.058 </td>
+   <td style="text-align:center;"> 0.098 </td>
+   <td style="text-align:center;"> 0.069 </td>
+   <td style="text-align:center;"> 0.117 </td>
+   <td style="text-align:center;"> 0.057 </td>
+   <td style="text-align:center;"> 0.073 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R2 Adj. </td>
+   <td style="text-align:center;"> 0.046 </td>
+   <td style="text-align:center;"> 0.063 </td>
+   <td style="text-align:center;"> 0.014 </td>
+   <td style="text-align:center;"> 0.048 </td>
+   <td style="text-align:center;"> 0.030 </td>
+   <td style="text-align:center;"> 0.028 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R2 Within </td>
+   <td style="text-align:center;"> 0.049 </td>
+   <td style="text-align:center;"> 0.039 </td>
+   <td style="text-align:center;"> 0.019 </td>
+   <td style="text-align:center;"> 0.020 </td>
+   <td style="text-align:center;"> 0.039 </td>
+   <td style="text-align:center;"> 0.040 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> R2 Within Adj. </td>
+   <td style="text-align:center;"> 0.047 </td>
+   <td style="text-align:center;"> 0.037 </td>
+   <td style="text-align:center;"> 0.012 </td>
+   <td style="text-align:center;"> 0.012 </td>
+   <td style="text-align:center;"> 0.035 </td>
+   <td style="text-align:center;"> 0.037 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> AIC </td>
+   <td style="text-align:center;"> 1913.4 </td>
+   <td style="text-align:center;"> 1920.9 </td>
+   <td style="text-align:center;"> 505.7 </td>
+   <td style="text-align:center;"> 497.9 </td>
+   <td style="text-align:center;"> 1006.5 </td>
+   <td style="text-align:center;"> 1022.1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> BIC </td>
+   <td style="text-align:center;"> 2043.9 </td>
+   <td style="text-align:center;"> 2268.9 </td>
+   <td style="text-align:center;"> 602.2 </td>
+   <td style="text-align:center;"> 622.6 </td>
+   <td style="text-align:center;"> 1119.7 </td>
+   <td style="text-align:center;"> 1206.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> RMSE </td>
+   <td style="text-align:center;"> 0.42 </td>
+   <td style="text-align:center;"> 0.41 </td>
+   <td style="text-align:center;"> 0.42 </td>
+   <td style="text-align:center;"> 0.41 </td>
+   <td style="text-align:center;"> 0.43 </td>
+   <td style="text-align:center;"> 0.43 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Std.Errors </td>
+   <td style="text-align:center;"> by: cnr_reg </td>
+   <td style="text-align:center;"> by: cnr_reg </td>
+   <td style="text-align:center;"> by: cnr_reg </td>
+   <td style="text-align:center;"> by: cnr_reg </td>
+   <td style="text-align:center;"> by: cnr_reg </td>
+   <td style="text-align:center;"> by: cnr_reg </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> FE: year </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> FE: cnr_reg </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> FE: party_reg^year </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+  </tr>
+</tbody>
+</table>> 
+> n_mean <- rep(c(m1, m2, m3), each = 2) %>% signif(3)
+> n_obs <- rep(c(nrow(dat), nrow(dat_left), nrow(dat_right)), each = 2) %>% signif(3)
+> 
+> # Wrap multicolumn around header (to make it centred with decimal alignment)
+> apply_mc <- function(x) {
++   return(c(paste0("\\multicolumn{1}{c}{", x, "}")))
++ }
+> 
+> 
+> names(results) <- paste0("(", 1:length(results), ")") %>% apply_mc()
+> 
+> row_mat <- matrix(
++   ncol = 7, byrow = TRUE,
++   c(
++     "Parties", apply_mc(rep(c("All", "Left", "Right"), each = 2)),
++     "N", apply_mc(c(n_obs)),
++     "Outcome Mean", apply_mc(c(n_mean)),
++     "Region FE", apply_mc(rep("Y", 6)),
++     "Year FE", apply_mc(rep(c("Y", "N"), 3)),
++     "Year x Party FE", apply_mc(rep(c("N", "Y"), 3))
++   )
++ ) %>%
++   as.data.frame()
+> 
+> clist <- c(
++   "elected_reg" = "Elected",
++   "female" = "Female",
++   "elected_reg:female" = "Elected x Female"
++ )
+> 
+> f <- function(x) format(round(x, 3), big.mark = ",")
+> goflist <- list(
++   list("raw" = "nobs", "clean" = "N", "fmt" = f),
++   list("raw" = "r.squared", "clean" = "R^2", "fmt" = f)
++ )
+> 
+> tex_out <- modelsummary(results,
++   coef_map = clist,
++   gof_omit = "N|Adj|Pseudo|Within|AIC|BIC|Log|FE|Std",
++   caption = "\\label{tab:norway_regional} \\textbf{Probabilities of Winning Re-Election in Norway's Regional Elections.}. Female incumbents are unlikely to experience a smaller incumbency advantage than men in this context. ",
++   booktabs = TRUE,
++   add_rows = row_mat,
++   output = "latex"
++ ) %>%
++   kable_styling(
++     font_size = 9,
++     # latex_options = "hold_position"
++   ) %>%
++   footnote(
++     threeparttable = TRUE,
++     fixed_small_size = FALSE,
++     footnote_as_chunk = TRUE,
++     general_title = "",
++     general = c("All estimates are reported with robust standard errors clustered at the region level in parentheses. Each observation is a candidate's election attempt. 'Elected' is an indicator for observations where the candidate obtained a seat in the municipal council. 'Female' is an indicator for observations identified as female. `Elected` times `Female` is the interaction between the two variables. Regression run on all candidates in regional elections between 2003 and 2015.")
++   ) %>%
++   add_header_above(c(" " = 1, "Win (in t+1)" = 6)) %>%
++   row_spec(c(2, 4), extra_latex_after = "\\addlinespace") %>%
++   row_spec(6, extra_latex_after = "\\addlinespace") %>%
++   column_spec(2:9, latex_column_spec = "S[
++               input-symbols=(),
++               table-format=-2.3,
++               table-space-text-pre    = (,
++               table-space-text-post   = ),
++               input-open-uncertainty  =,
++               input-close-uncertainty = ,
++               table-align-text-post = false]") %>%
++   gsub(pattern = "\\textbackslash{}", replacement = "\\", fixed = TRUE) %>%
++   gsub(pattern = "\\{", replacement = "{", fixed = TRUE) %>%
++   gsub(pattern = "\\}", replacement = "}", fixed = TRUE)
+> 
+> cat(tex_out, file = "output/tables/norway_regional.tex")
+> 
+> proc.time()
+   user  system elapsed 
+  6.698   0.601   7.906 

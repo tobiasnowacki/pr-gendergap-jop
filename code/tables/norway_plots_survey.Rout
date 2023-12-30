@@ -1,0 +1,87 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(readxl)
+> library(rdrobust)
+> library(lfe)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+> 
+> options(modelsummary_format_numeric_latex = "plain")
+> source("code/utils/het_by_sex_plot.R")
+> 
+> df <- read_excel("data/localsurvey_crosstab.xlsx") %>%
++     mutate(party_en = factor(c("Soc Left", "Labour", "ChrDem", "Liberal", "Conserv", "Progress \n (right-wing pop)", "Green")),
++     bloc = c("left", "left", rep("right", 4), "left")) %>%
++     filter(!is.na(party))
+> 
+> df$party_en = factor(df$party_en, levels = c("Green", "Soc Left", "Labour", "ChrDem", "Liberal", "Conserv", "Progress \n (right-wing pop)"))
+> 
+> ggplot(df, aes(x = party_en, y = more)) +
++     geom_hline(yintercept = 50, lty = "dashed", lwd = 0.5) +
++     geom_bar(stat = "identity", aes(fill = bloc)) +
++     scale_fill_manual(values = c("#c20606", "#0f0fbd")) +
++     labs(x = "Party", y = "% Agree", fill = "Party Group") +
++     theme_tn()
+There were 50 or more warnings (use warnings() to see the first 50)
+> 
+> ggsave(
++   "output/figures/norway_survey_support.pdf",
++   device = cairo_pdf,
++   width = 6,
++   height = 4
++   )
+> 
+> proc.time()
+   user  system elapsed 
+  3.370   0.352   4.137 

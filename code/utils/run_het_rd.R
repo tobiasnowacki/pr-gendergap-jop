@@ -10,8 +10,10 @@ run_het_rd = function(data, outcome, running, x_formula, poly = 1, bw_fac = c(1,
 
     if (w == TRUE){
       data = weighting(data, 1, bw)
+      is_weights <- 1
     } else {
-      data$wght = 1 / nrow(data)
+      data$wght = NULL
+      is_weights <- NULL
     }
 
     # print(data %>% head)

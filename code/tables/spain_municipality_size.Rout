@@ -1,0 +1,136 @@
+
+R version 4.1.2 (2021-11-01) -- "Bird Hippie"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(tidyverse)
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+> library(rio)
+> library(rdrobust)
+> library(lfe)
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following objects are masked from ‘package:tidyr’:
+
+    expand, pack, unpack
+
+> library(modelsummary)
+> library(kableExtra)
+
+Attaching package: ‘kableExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    group_rows
+
+> library(broom)
+> library(devtools)
+Loading required package: usethis
+> source_url("https://raw.githubusercontent.com/tobiasnowacki/RTemplates/master/plottheme.R")
+ℹ SHA-1 hash of file is "24d50dc41518460caa7dd1e4f46697f9eb053e29"
+Registering fonts with R
+Loading required package: viridisLite
+> source("code/utils/run_het_rd.R")
+> 
+> options(modelsummary_format_numeric_latex = "plain")
+> 
+> # Load data in
+> rd_dat = read.csv("data/spain_rd_ready.csv",
++                   row.names = NULL) %>%
++     filter(year < 2019) %>%
++     filter(pop < 250000) %>%
++     filter(abs(winmargin_loc) < 0.5) %>%
++     filter(major_party == TRUE) %>%
++     filter(winmargin_loc != 0)
+> 
+>     run_results = run_het_rd(rd_dat,
++             "run_again",
++             "winmargin_loc",
++             "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(province_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
++             bw_fac = c(1))
+0.03205669> 
+> # Function that takes upper pop threshold
+> result_pop <- function(data, pop_limit) {
++ 
++     trunc_dat <- data %>% filter(pop < pop_limit)
++ 
++     run_results = run_het_rd(trunc_dat,
++             "run_again",
++             "winmargin_loc",
++             "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(province_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
++             bw_fac = c(1))
++ 
++     win_results <- run_het_rd(trunc_dat,
++             "win_again",
++             "winmargin_loc",
++             "winmargin_loc + treat + female + winmargin_loc:treat + winmargin_loc:female + treat:female + winmargin_loc:treat:female | as.factor(province_id) + as.factor(year) + as.factor(party_short) + as.factor(year):as.factor(party_short)| 0 | city_id",
++             bw_fac = c(1))
++ 
++     tab <- tibble(
++         thresh = pop_limit,
++         outcome = c("run_again", "win_again"),
++         coef = c(run_results[[1]]$out$coef[6], win_results[[1]]$out$coef[6]),
++         se = c(run_results[[1]]$out$se[6], win_results[[1]]$out$se[6]),
++         ymin = coef - 1.96 * se,
++         ymax = coef + 1.96 * se
++     )
++ 
++     return(tab)
++ 
++ }
+> 
+> thresh_tbl <- map_dfr(seq(10000, 200000, by = 10000), ~ result_pop(rd_dat, .x))
+0.039532580.029843590.035965680.037221110.035915480.036675560.035083080.036721050.035426660.035299850.03584290.034861190.033930190.034315440.034933660.034522970.035400720.035098220.036148920.035649530.035094960.035736450.034221990.035135660.033964360.034951730.034955520.035412790.034883790.035132140.033985840.035130580.034060130.035158620.033115350.035063780.03217380.035074970.031859070.03513846> 
+> thresh_tbl <- thresh_tbl %>%
++     mutate(outcome = case_when(
++         outcome == "run_again" ~ "Run (t+1)",
++         outcome == "win_again" ~ "Win (t+1)"
++     ))
+> 
+> ggplot(thresh_tbl, aes(x = thresh)) +
++     geom_hline(yintercept = 0, lty = "dashed") +
++     geom_errorbar(aes(ymin = ymin, ymax = ymax, colour = outcome)) +
++     geom_point(aes(y = coef, colour = outcome)) +
++     facet_wrap(~ outcome) +
++     scale_colour_viridis_d(end = 0.7) +
++     ylim(c(-0.05, 0.1)) +
++     labs(x = "Sample Population Upper Bound", y = "Gender Gap Coefficient") +
++     theme_tn() +
++     guides(colour = FALSE)
+There were 50 or more warnings (use warnings() to see the first 50)
+> 
+> ggsave(
++   "output/figures/spain_muni_robust.pdf",
++   device = cairo_pdf,
++   width = 6,
++   height = 3
++   )
+> 
+> proc.time()
+   user  system elapsed 
+ 87.663   6.097  94.652 

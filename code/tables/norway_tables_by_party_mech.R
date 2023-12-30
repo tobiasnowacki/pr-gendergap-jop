@@ -114,7 +114,7 @@ clist = c("treatTRUE" = "Elected",
 tex_out = modelsummary(results_tidy,
              coef_map = clist,
              gof_omit = ".*",
-             caption = "\\label{tab:norway_by_party_mech} \\textbf{Mechanisms leading to lower incumbency advantage: Difference-in-Discontinuity Estimates On Additional Outcomes, Norway.}",
+             caption = "\\label{tab:norway_by_party_mech} \\textbf{Mechanisms leading to lower incumbency advantage: Heterogeneity-in-DiscontinuityEstimates On Additional Outcomes, Norway.}",
              booktabs = TRUE,
              add_rows = row_mat,
              output = "latex") %>%
@@ -144,3 +144,51 @@ tex_out = modelsummary(results_tidy,
   gsub(pattern = "\\}", replacement= "}", fixed = TRUE)
 
   cat(tex_out, file = "output/tables/norway_by_party_mech.tex")
+
+
+## Full model results
+clist_extended <- c(
+  "treatTRUE" = "Elected",
+  "female" = "Female",
+  "treatTRUE:female" = "Elected x Female",
+  "winmargin_loc" = "Margin",
+  "winmargin_loc:treatTRUE" = "Margin x Elected",
+  "winmargin_loc:female" = "Margin x Female",
+  "winmargin_loc:treatTRUE:female" = "Margin x Elected x Female"
+)
+
+tex_out_full = modelsummary(results_tidy,
+  coef_map = clist_extended,
+  gof_omit = ".*",
+  caption = "\\label{tab:norway_by_party_mech_full} \\textbf{Mechanisms leading to lower incumbency advantage: Heterogeneity-in-DiscontinuityEstimates On Additional Outcomes, Norway.}",
+  booktabs = TRUE,
+  add_rows = row_mat,
+  output = "latex"
+) %>%
+  kable_styling(
+    font_size = 9,
+    latex_options = "hold_position"
+  ) %>%
+  footnote(
+    threeparttable = TRUE,
+    fixed_small_size = FALSE,
+    footnote_as_chunk = TRUE,
+    general_title = "",
+    general = c("All estimates are reported with robust standard errors clustered at the municipality level in parentheses. Each observation is a candidate's election attempt.")
+  ) %>%
+  add_header_above(c(" " = 1, "Orig. Rank Advance" = 2, "Actual Rank Advance" = 2, "Pre-Ad. (t+1)" = 2, "Pers.V. Share (t+1)" = 2)) %>%
+  row_spec(c(2, 4), extra_latex_after = "\\addlinespace") %>%
+  row_spec(c(6, 14), extra_latex_after = "\\addlinespace \\midrule \\addlinespace") %>%
+  column_spec(2:9, latex_column_spec = "S[
+              input-symbols=(),
+              table-format=-2.3,
+              table-space-text-pre    = (,
+              table-space-text-post   = ),
+              input-open-uncertainty  =,
+              input-close-uncertainty = ,
+              table-align-text-post = false]") %>%
+  gsub(pattern = "\\textbackslash{}", replacement = "\\", fixed = TRUE) %>%
+  gsub(pattern = "\\{", replacement = "{", fixed = TRUE) %>%
+  gsub(pattern = "\\}", replacement = "}", fixed = TRUE)
+
+cat(tex_out_full, file = "output/tables/norway_by_party_mech_full.tex")

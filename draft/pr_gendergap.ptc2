@@ -1,0 +1,52 @@
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {A}Illustrative Simulation of Open-List Theory}{\reset@font\ptcSfont 3}{appendix.A}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {A.1}Setup}{\reset@font\ptcSSfont 3}{subsection.A.1}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {A.2}Simulation}{\reset@font\ptcSSfont 4}{subsection.A.2}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {A.3}Results}{\reset@font\ptcSSfont 6}{subsection.A.3}}
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {B}RD Robustness Checks: Main Results}{\reset@font\ptcSfont 7}{appendix.B}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {B.1}Functional Form}{\reset@font\ptcSSfont 7}{subsection.B.1}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {B.1.1}Norway}{\reset@font\ptcSSSfont 7}{subsubsection.B.1.1}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {B.1.2}Spain}{\reset@font\ptcSSSfont 8}{subsubsection.B.1.2}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {B.2}Bandwidth Sensitivity}{\reset@font\ptcSSfont 9}{subsection.B.2}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {B.2.1}Norway}{\reset@font\ptcSSSfont 9}{subsubsection.B.2.1}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {B.2.2}Spain}{\reset@font\ptcSSSfont 10}{subsubsection.B.2.2}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {B.3}Kernel Choice}{\reset@font\ptcSSfont 11}{subsection.B.3}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {B.4}Estimates without Fixed Effects}{\reset@font\ptcSSfont 13}{subsection.B.4}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {B.5}Estimates conditional on running again}{\reset@font\ptcSSfont 15}{subsection.B.5}}
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {C}RD Robustness Checks: Identification Assumptions}{\reset@font\ptcSfont 17}{appendix.C}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {C.1}Continuity Around Threshold}{\reset@font\ptcSSfont 17}{subsection.C.1}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {C.2}Continuity in Share Of Female Candidates}{\reset@font\ptcSSfont 18}{subsection.C.2}}
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {D}Identifying Close Winners and Losers under Proportional Representation}{\reset@font\ptcSfont 19}{appendix.D}}
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {E}Testing the Gender Gap Across Systems And Countries}{\reset@font\ptcSfont 21}{appendix.E}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {E.1}Same Country, Different Electoral System: Likely No Gender Gap}{\reset@font\ptcSSfont 21}{subsection.E.1}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {E.1.1}No Evidence of Negative Gender Gap in County-Level Elections}{\reset@font\ptcSSSfont 23}{subsubsection.E.1.1}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {E.2}Different Country, Same Electoral System: Gender Gap Replicates}{\reset@font\ptcSSfont 23}{subsection.E.2}}
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {F}Additional Statistical Results: Norway}{\reset@font\ptcSfont 26}{appendix.F}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {F.1}Gender Gap Persists In Restricted Sample}{\reset@font\ptcSSfont 26}{subsection.F.1}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {F.2}Additional Outcomes Robust To Functional Form Choices}{\reset@font\ptcSSfont 27}{subsection.F.2}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {F.3}Estimating the Effect on Personal Votes}{\reset@font\ptcSSfont 28}{subsection.F.3}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {F.3.1}Robustness to Personal Vote Measurement}{\reset@font\ptcSSSfont 30}{subsubsection.F.3.1}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {F.3.2}Robustness to Data Sample}{\reset@font\ptcSSSfont 31}{subsubsection.F.3.2}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {F.3.3}Robustness to Functional Form}{\reset@font\ptcSSSfont 32}{subsubsection.F.3.3}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {F.4}Rank Position and Personal Votes}{\reset@font\ptcSSfont 33}{subsection.F.4}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {F.5}Differential Selection and Characteristics Correlated With Gender}{\reset@font\ptcSSfont 34}{subsection.F.5}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {F.6}Matching Estimates}{\reset@font\ptcSSfont 36}{subsection.F.6}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {F.7}Heterogeneity By Population Size}{\reset@font\ptcSSfont 38}{subsection.F.7}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {F.7.1}Sensitivity to Outliers}{\reset@font\ptcSSSfont 38}{subsubsection.F.7.1}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {F.7.2}Effect Magnitude by Population Tercile}{\reset@font\ptcSSSfont 39}{subsubsection.F.7.2}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {F.8}Survey Evidence On Voters' Attitudes Towards Female Candidates}{\reset@font\ptcSSfont 40}{subsection.F.8}}
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {G}Additional Statistical Results: Spain}{\reset@font\ptcSfont 41}{appendix.G}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {G.1}Estimates from Difference-in-Differences Specification}{\reset@font\ptcSSfont 41}{subsection.G.1}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {G.2}Heterogeneity Across Parties}{\reset@font\ptcSSfont 42}{subsection.G.2}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {G.3}Heterogeneity Across Quota Rules}{\reset@font\ptcSSfont 43}{subsection.G.3}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {G.3.1}Municipalities without Gender Quota Alone}{\reset@font\ptcSSSfont 44}{subsubsection.G.3.1}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {G.3.2}Heterogeneity-in-Discontinuity Estimates}{\reset@font\ptcSSSfont 45}{subsubsection.G.3.2}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {G.3.3}Difference-in-Differences Estimates}{\reset@font\ptcSSSfont 47}{subsubsection.G.3.3}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {G.4}Heterogeneity By Population Size}{\reset@font\ptcSSfont 49}{subsection.G.4}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {G.4.1}Sensitivity to Outliers}{\reset@font\ptcSSSfont 49}{subsubsection.G.4.1}}
+{\reset@font\ptcSSSfont\mtc@string\contentsline{subsubsection}{\noexpand \leavevmode \numberline {G.4.2}Effect Magnitude By Population Tercile}{\reset@font\ptcSSSfont 49}{subsubsection.G.4.2}}
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {H}Descriptive Statistics}{\reset@font\ptcSfont 50}{appendix.H}}
+{\reset@font\ptcSfont\mtc@string\contentsline{section}{\noexpand \leavevmode \numberline {I}Full Model Results}{\reset@font\ptcSfont 52}{appendix.I}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {I.1}Norway}{\reset@font\ptcSSfont 52}{subsection.I.1}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {I.2}Spain}{\reset@font\ptcSSfont 53}{subsection.I.2}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {I.3}Norway, By Party Group}{\reset@font\ptcSSfont 54}{subsection.I.3}}
+{\reset@font\ptcSSfont\mtc@string\contentsline{subsection}{\noexpand \leavevmode \numberline {I.4}Norway, Mechanisms}{\reset@font\ptcSSfont 55}{subsection.I.4}}
