@@ -28,7 +28,9 @@ To replicate all code run the following terminal command from the root folder of
 make R
 ```
 
-To then embed the generated results into the `.tex` file (to check against the previously submitted version), compile `draft/pr_gendergap.tex`
+To then embed the generated results into the `.tex` file (to check against the previously submitted version), compile `draft/pr_gendergap.tex`.
+
+(Note that, compared to previously submitted versions of the draft + results, the term ``difference-in-discontinuities'' has been amended to ``heterogeneity-in-discontinuities'')
 
 
 ### Versions of packages used
