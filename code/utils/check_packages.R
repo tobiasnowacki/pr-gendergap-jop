@@ -6,7 +6,13 @@ pkgs <- c(
     "modelsummary",
     "kableExtra",
     "broom",
-    "lfe"
+    "lfe",
+    "gbm",
+    "Matching",
+    "fabricatr",
+    "fastDummies",
+    "readxl",
+    "haven"
 )
 
 for (x in pkgs){
